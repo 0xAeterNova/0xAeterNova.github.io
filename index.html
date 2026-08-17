@@ -1,7 +1,196 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#030712"><meta name="description" content="0xAeterNova — Robotics, AI, cybersecurity and CTF portfolio."><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="css/styles.css"><title>0xAeterNova — Robotics · AI · Cybersecurity</title></head><body><div id="nav"></div>
-<main><section class="hero"><div id="three-stage" aria-hidden="true"></div><div class="fallback-orb" aria-hidden="true"></div><div class="hero-vignette"></div><div class="container"><div class="hero-content"><div class="boot-chip"><span class="status-dot"></span><span>root@0xaeternova:~$ portfolio --interactive</span></div><h1><small data-name>Zaid Tawalbeh</small><span class="gradient-text">0xAeterNova</span></h1><p class="hero-copy" data-intro></p><div class="hero-actions"><a class="btn btn-primary" href="projects.html">Explore projects <span>↗</span></a><a class="btn" href="cybersecurity.html">Enter security lab</a><a class="btn" href="https://github.com/0xAeterNova" target="_blank" rel="noreferrer">GitHub</a></div></div></div><div class="hero-meta"><div class="scroll-indicator"><span class="scroll-line"></span>scroll to inspect</div><div class="quality-control"><span>3D QUALITY</span><button data-quality="auto">AUTO</button><button data-quality="high">HIGH</button><button data-quality="low">LOW</button></div></div></section>
-<div class="signal-strip"><div class="signal-track"><span><strong>ROB</strong> intelligent systems</span><span><strong>AI</strong> multimodal perception</span><span><strong>SEC</strong> reverse engineering</span><span><strong>CTF</strong> pwn / rev</span><span><strong>EMB</strong> ESP32-S3</span><span><strong>LIN</strong> security workflows</span><span><strong>ROB</strong> intelligent systems</span><span><strong>AI</strong> multimodal perception</span><span><strong>SEC</strong> reverse engineering</span><span><strong>CTF</strong> pwn / rev</span><span><strong>EMB</strong> ESP32-S3</span><span><strong>LIN</strong> security workflows</span></div></div>
-<section class="section"><div class="container"><div class="section-head reveal"><div><p class="eyebrow">Selected work / 2026</p><h2>Systems I’m<br><span class="gradient-text">building.</span></h2></div><p>A focused selection across embedded sensing, artificial intelligence, Linux, and security. Each project has its own detail page and is driven from one editable data file.</p></div><div class="cards" id="featured-projects"></div><div style="margin-top:28px" class="reveal"><a class="btn" href="projects.html">View all projects →</a></div></div></section>
-<section class="section"><div class="container"><div class="section-head reveal"><div><p class="eyebrow">Capabilities</p><h2>One stack.<br><span class="gradient-text">Multiple domains.</span></h2></div><p>I’m most interested in the boundaries between hardware, intelligent software, low-level systems, and security.</p></div><div class="split-panel"><div class="terminal glass reveal"><div class="terminal-bar"><i></i><i></i><i></i></div><div class="terminal-code"><div><span class="prompt">root@0xaeternova</span>:<span class="key">~</span>$ whoami</div><div class="value">robotics_ai_student + security_researcher</div><br><div><span class="prompt">root@0xaeternova</span>:<span class="key">~</span>$ focus --current</div><div>→ <span class="value">reverse_engineering</span></div><div>→ <span class="value">binary_exploitation</span></div><div>→ <span class="value">embedded_ai</span></div><br><div><span class="prompt">root@0xaeternova</span>:<span class="key">~</span>$ status</div><div><span class="key">[ONLINE]</span> learning / building / competing<span class="status-dot" style="display:inline-block;margin-left:8px"></span></div></div></div><div class="skills-panel glass reveal" id="skills"></div></div></div></section>
-<section class="section"><div class="container"><div class="ctf-banner glass reveal"><div><p class="eyebrow">Cybersecurity / CTF</p><h2>Reverse. Exploit.<br><span class="gradient-text">Understand.</span></h2><p>Competitive CTF work with GeomRavage, centered on reverse engineering and binary exploitation, with forensics and OSINT as adjacent disciplines.</p><div class="hero-actions"><a class="btn btn-primary" href="cybersecurity.html">Open security profile</a><a class="btn" href="https://ctftime.org/user/245368" target="_blank" rel="noreferrer">CTFtime ↗</a></div></div><div class="ctf-stats"><div class="metric"><b>REV</b><span>Primary category</span></div><div class="metric"><b>PWN</b><span>Primary category</span></div><div class="metric"><b>GeomRavage</b><span>CTF team</span></div><div class="metric"><b>CTFtime</b><span>Competition profile</span></div></div></div></div></section>
-</main><div id="footer"></div><script type="module" src="js/home.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#030712" />
+  <meta name="description" content="0xAeterNova — interactive 3D portfolio of Zaid Tawalbeh: Robotics & AI, cybersecurity, CTF, embedded systems." />
+  <title>0xAeterNova — Interactive 3D Portfolio</title>
+  <link rel="icon" href="assets/ui/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="world" aria-label="Interactive 3D portfolio world"></canvas>
+
+    <div class="noise" aria-hidden="true"></div>
+    <div class="scanline" aria-hidden="true"></div>
+
+    <section id="boot" class="boot" aria-label="Portfolio introduction">
+      <div class="boot__orb" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="boot__content">
+        <p class="eyebrow"><span class="dot"></span> SYSTEM // AETERNOVA_WORLD</p>
+        <h1><span>0x</span>AeterNova</h1>
+        <p class="boot__subtitle">ROBOTICS & AI <i>×</i> CYBERSECURITY <i>×</i> CTF</p>
+        <p class="boot__copy">Drive through an interactive world built around my work. Every district is a project, discipline, or part of my story.</p>
+        <button id="enterWorld" class="primary-button">
+          <span>ENTER WORLD</span><b>↗</b>
+        </button>
+        <p class="boot__hint">WASD / ARROWS TO DRIVE · ENTER TO INTERACT</p>
+      </div>
+    </section>
+
+    <header id="hud" class="hud is-hidden">
+      <button class="brand" data-route="home" aria-label="Go home">
+        <span class="brand__sigil">0x</span><span class="brand__name">AETERNOVA</span>
+      </button>
+      <nav class="nav" aria-label="Portfolio navigation">
+        <button data-route="projects">PROJECTS</button>
+        <button data-route="security">CYBER</button>
+        <button data-route="about">ABOUT</button>
+        <button data-route="contact">CONTACT</button>
+      </nav>
+      <div class="hud__actions">
+        <button id="mapButton" class="hud-button" aria-label="Open world map">MAP [M]</button>
+        <button id="qualityButton" class="hud-button" aria-label="Change graphics quality">AUTO</button>
+        <a class="hud-button hud-button--link" href="https://github.com/0xAeterNova" target="_blank" rel="noreferrer">GITHUB ↗</a>
+      </div>
+    </header>
+
+    <aside id="telemetry" class="telemetry is-hidden" aria-label="Vehicle telemetry">
+      <div><span>VELOCITY</span><strong id="speedValue">000</strong><small>KM/H</small></div>
+      <div><span>SECTOR</span><strong id="sectorValue">HOME</strong></div>
+      <div><span>SIGNAL</span><strong class="signal">●●●●</strong></div>
+    </aside>
+
+    <div id="interaction" class="interaction is-hidden">
+      <span class="interaction__key">ENTER</span>
+      <span id="interactionText">INTERACT</span>
+    </div>
+
+    <div id="controls" class="controls is-hidden">
+      <div class="controls__keys"><kbd>W</kbd><div><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div></div>
+      <p><b>DRIVE</b><span>SHIFT boost · SPACE brake · mouse drag camera</span></p>
+    </div>
+
+    <div id="mobileControls" class="mobile-controls is-hidden" aria-label="Touch driving controls">
+      <div class="mobile-pad">
+        <button data-control="forward">▲</button>
+        <div><button data-control="left">◀</button><button data-control="backward">▼</button><button data-control="right">▶</button></div>
+      </div>
+      <button class="mobile-action" data-control="interact">INTERACT</button>
+    </div>
+
+
+    <section id="mapOverlay" class="map-overlay" aria-label="World map">
+      <div class="map-shell">
+        <header><div><p class="eyebrow">HOLOGRAPHIC NAVIGATION</p><h2>WORLD MAP</h2></div><button id="mapClose" class="panel-close" aria-label="Close map">×</button></header>
+        <div class="map-grid">
+          <div id="mapPlayer" class="map-player"><i></i><span>YOU</span></div>
+          <button class="map-node map-node--home" data-map-route="home"><b>00</b><span>HOME</span></button>
+          <button class="map-node map-node--ruvigil" data-map-project="ruvigil"><b>01</b><span>RUVIGIL</span></button>
+          <button class="map-node map-node--phantom" data-map-project="phantom"><b>02</b><span>PHANTOM</span></button>
+          <button class="map-node map-node--elif" data-map-project="elif-linux"><b>03</b><span>ELIF</span></button>
+          <button class="map-node map-node--security" data-map-route="security"><b>04</b><span>CYBER</span></button>
+          <button class="map-node map-node--about" data-map-route="about"><b>05</b><span>ABOUT</span></button>
+          <button class="map-node map-node--contact" data-map-route="contact"><b>06</b><span>UPLINK</span></button>
+          <svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50 52 L50 28 M50 52 L24 38 M50 52 L76 38 M50 52 L83 58 M50 52 L17 60 M50 52 L50 84"/><path d="M24 38 L50 28 L76 38"/></svg>
+        </div>
+        <footer><span>M // TOGGLE MAP</span><span>R // RESPAWN</span><span>ENTER // INTERACT</span></footer>
+      </div>
+    </section>
+
+    <div id="routeTransition" class="route-transition" aria-hidden="true">
+      <div class="route-transition__line"></div>
+      <div class="route-transition__core">0x</div>
+      <div class="route-transition__label">TRAVERSING</div>
+    </div>
+
+    <main id="panelLayer" class="panel-layer" aria-live="polite">
+      <article id="homePanel" class="world-panel world-panel--home" data-page="home">
+        <button class="panel-close" aria-label="Close panel">×</button>
+        <div class="home-panel__content">
+          <p class="eyebrow">WELCOME // NODE_00</p>
+          <h2>BUILDING THE<br><span>INTELLIGENT EDGE.</span></h2>
+          <p>I’m Zaid Tawalbeh — <b>0xAeterNova</b>. I work across robotics, artificial intelligence, embedded systems, reverse engineering, and offensive security.</p>
+          <div class="home-panel__actions">
+            <button class="primary-button" data-route="projects"><span>EXPLORE PROJECTS</span><b>→</b></button>
+            <a class="text-link" href="https://github.com/0xAeterNova" target="_blank" rel="noreferrer">github.com/0xAeterNova ↗</a>
+          </div>
+        </div>
+        <div class="home-panel__visual">
+          <img src="assets/ui/hero-placeholder.svg" data-src="assets/profile/profile-hero-dark.svg" decoding="async" alt="0xAeterNova original GitHub profile hero" />
+        </div>
+      </article>
+
+      <article id="projectsPanel" class="world-panel world-panel--projects" data-page="projects">
+        <button class="panel-close" aria-label="Close panel">×</button>
+        <div class="panel-heading">
+          <p class="eyebrow">PROJECT DISTRICT // 01</p>
+          <h2>SELECTED <span>BUILDS</span></h2>
+          <p>Three systems, three different layers of computing. Drive to their world stations or open them here.</p>
+        </div>
+        <div id="projectCards" class="project-cards"></div>
+      </article>
+
+      <article id="securityPanel" class="world-panel world-panel--security" data-page="security">
+        <button class="panel-close" aria-label="Close panel">×</button>
+        <div class="security-grid">
+          <section>
+            <p class="eyebrow">CYBER ARENA // 02</p>
+            <h2>BREAK.<br><span>UNDERSTAND.</span><br>HARDEN.</h2>
+            <p>My security work centers on CTF competition and low-level problem solving: reverse engineering, binary exploitation, forensics, Linux, and OSINT.</p>
+            <div class="security-links">
+              <a href="https://ctftime.org/user/245368" target="_blank" rel="noreferrer">CTFTIME PROFILE ↗</a>
+              <a href="https://ctftime.org/team/412925" target="_blank" rel="noreferrer">GEOMRAVAGE ↗</a>
+            </div>
+          </section>
+          <div class="radar-card">
+            <div class="radar"><i></i><i></i><i></i><i></i><b></b></div>
+            <div class="radar-meta"><span>ACTIVE FOCUS</span><strong>REV / PWN</strong><small>COAE · CPTS · CTF</small></div>
+          </div>
+          <a class="achievement-card" href="https://github.com/0xAeterNova/upctf-writeups/blob/main/REV/Locked%20Temple/Write-Up.md" target="_blank" rel="noreferrer">
+            <img src="assets/ui/asset-placeholder.svg" data-src="assets/profile/trophy-1.png" alt="Locked Temple writeup challenge trophy" />
+            <div><small>ACHIEVEMENT</small><h3>Locked Temple</h3><p>Writeup Challenge Winner</p><span>OPEN WRITEUP ↗</span></div>
+          </a>
+        </div>
+      </article>
+
+      <article id="aboutPanel" class="world-panel world-panel--about" data-page="about">
+        <button class="panel-close" aria-label="Close panel">×</button>
+        <div class="about-layout">
+          <div class="about-art">
+            <img src="assets/ui/hero-placeholder.svg" data-src="assets/profile/profile-hero-dark.svg" decoding="async" alt="Original 0xAeterNova GitHub hero artwork" />
+            <div class="about-art__tag">SOURCE // GITHUB_PROFILE_BASE</div>
+          </div>
+          <section class="about-copy">
+            <p class="eyebrow">OBSERVATORY // 03</p>
+            <h2>0xAeterNova<br><span>ZAID TAWALBEH</span></h2>
+            <p>I’m a Robotics & Artificial Intelligence student who likes working where software meets the physical world. My projects combine sensing, AI, embedded development, Linux, and security.</p>
+            <p>I’m especially interested in systems that are intelligent <em>and</em> resilient: autonomous robotics, computer vision, human sensing, reverse engineering, and security research.</p>
+            <div id="skillMatrix" class="skill-matrix"></div>
+          </section>
+        </div>
+      </article>
+
+      <article id="contactPanel" class="world-panel world-panel--contact" data-page="contact">
+        <button class="panel-close" aria-label="Close panel">×</button>
+        <div class="contact-shell">
+          <div class="contact-orbit" aria-hidden="true"><i></i><i></i><i></i><b>0x</b></div>
+          <div>
+            <p class="eyebrow">UPLINK // 04</p>
+            <h2>START A<br><span>CONNECTION.</span></h2>
+            <p>Projects, robotics, AI, cybersecurity, CTF, research, competitions, or a difficult technical idea worth building.</p>
+            <div class="contact-links">
+              <a href="https://www.linkedin.com/in/zaidtawalbeh/" target="_blank" rel="noreferrer"><span>LINKEDIN</span><b>↗</b></a>
+              <a href="https://github.com/0xAeterNova" target="_blank" rel="noreferrer"><span>GITHUB</span><b>↗</b></a>
+              <a href="https://ctftime.org/user/245368" target="_blank" rel="noreferrer"><span>CTFTIME</span><b>↗</b></a>
+              <a href="https://linktr.ee/0xAeterNova" target="_blank" rel="noreferrer"><span>LINKTREE</span><b>↗</b></a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article id="projectDetailPanel" class="world-panel world-panel--detail" data-page="project-detail">
+        <button class="panel-close" aria-label="Close panel">×</button>
+        <div id="projectDetail"></div>
+      </article>
+    </main>
+
+    <div id="toast" class="toast"></div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

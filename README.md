@@ -1,53 +1,50 @@
-# 0xAeterNova Portfolio
+# 0xAeterNova — Interactive 3D Portfolio
 
-A lightweight multi-page portfolio for **0xAeterNova**, matching the dark purple/cyan/emerald profile theme and adding an interactive Three.js hero.
+A driveable WebGL portfolio world for **0xAeterNova / Zaid Tawalbeh**.
 
-## Pages
+This version deliberately avoids the normal "hero + cards + scrolling sections" structure. The portfolio is one persistent Three.js world with:
 
-- `index.html` — home + interactive 3D hero
-- `projects.html` — automatically renders all projects
-- `project.html?project=ruvigil` — reusable project detail page
-- `cybersecurity.html` — CTF/security profile
-- `about.html` — profile and skills
-- `contact.html` — social/contact links
+- a controllable cyber rover;
+- 3D world districts and project landmarks;
+- proximity interaction;
+- cinematic camera travel between portfolio pages;
+- a holographic world map;
+- live 3D project detail views;
+- animated HUD and page transitions;
+- responsive mobile controls;
+- auto/high/low graphics quality;
+- procedural 3D assets to keep the project lightweight;
+- the original `profile-hero-dark.svg` from the GitHub profile repository.
 
-## Add a project
+## Run locally
 
-Open `js/data.js`, find `export const projects = [...]`, copy one project object and edit it:
+### Windows
+Double-click `start-local.bat`.
 
-```js
-{
-  slug: "my-new-project",
-  name: "My New Project",
-  kicker: "Robotics / AI",
-  year: "2026",
-  featured: true,
-  status: "Active",
-  summary: "One short sentence.",
-  description: "A fuller explanation.",
-  contribution: "What you personally did.",
-  stack: ["Python", "ROS", "C++"],
-  image: "assets/projects/my-new-project.webp",
-  repository: "https://github.com/0xAeterNova/..."
-}
-```
-
-Then put the image in `assets/projects/`. That is all. The project will appear on `projects.html`; if `featured: true`, it also appears on the home page.
-
-## 3D performance
-
-The hero uses Three.js primitives only: no GLB model, physics engine, large textures, or video background. It automatically reduces particle count and pixel ratio on phones / lower-memory devices. Visitors can choose Auto, High, or Low quality. `prefers-reduced-motion` disables WebGL and shows a CSS fallback.
-
-## Local preview
-
-Because the site uses JavaScript modules, do not double-click `index.html`. Run a tiny local server from this folder:
-
+### Linux / macOS
 ```bash
-python -m http.server 8000
+./start-local.sh
 ```
 
-Open `http://localhost:8000`.
+Then open `http://localhost:8080`.
 
-## Publish
+## Content editing
 
-See `PUBLISHING.md`.
+Edit `js/data.js` for projects, links, descriptions, and skills.
+
+World construction is in `js/world.js`. UI/routing is in `js/main.js`. Styling is in `css/main.css`.
+
+## Direct page URLs
+
+The portfolio itself is a single continuous 3D experience, but convenience page URLs are included:
+
+- `projects.html` → `index.html#projects`
+- `cybersecurity.html` → `index.html#security`
+- `about.html` → `index.html#about`
+- `contact.html` → `index.html#contact`
+
+## Core technology
+
+The site imports Three.js as an ES module. All portfolio world assets are custom procedural geometry and your own profile assets; no Bruno Simon models or textures are included.
+
+See `CREDITS.md` and `PUBLISHING.md`.

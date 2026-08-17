@@ -2,9 +2,7 @@ export const profile = {
   handle: "0xAeterNova",
   name: "Zaid Tawalbeh",
   title: "Robotics & AI · Cybersecurity · CTF",
-  intro: "I build intelligent systems, embedded prototypes, and security tooling at the intersection of robotics, AI, and offensive security.",
-  location: "Jordan",
-  status: "Building intelligent systems. Breaking systems to understand them.",
+  statement: "Building intelligent systems. Breaking systems to understand them.",
   links: {
     github: "https://github.com/0xAeterNova",
     linkedin: "https://www.linkedin.com/in/zaidtawalbeh/",
@@ -14,68 +12,67 @@ export const profile = {
   }
 };
 
-// ADD A NEW PROJECT HERE.
-// 1) Copy one object.
-// 2) Change the slug/name/text/links.
-// 3) Put its image in assets/projects/ and change image.
-// It will automatically appear on projects.html and project.html?project=YOUR-SLUG.
+// ADD NEW PROJECTS HERE ONLY.
+// The Projects panel and project detail view are generated from this array.
+// For a new project: copy an object, give it a unique slug, change the text/stack/link,
+// and optionally add a matching 3D station type/color.
 export const projects = [
   {
     slug: "ruvigil",
+    index: "01",
     name: "RuVigil",
-    kicker: "Ambient Intelligence / Embedded",
+    short: "RF sensing without cameras.",
+    kicker: "AMBIENT INTELLIGENCE / EMBEDDED",
     year: "2026",
-    featured: true,
-    status: "Active development",
-    summary: "Privacy-focused, camera-free room monitoring using a five-node ESP32-S3 deployment and Wi-Fi CSI sensing.",
-    description: "RuVigil explores presence, vital-signal sensing, fall detection, and crowd occupancy without relying on cameras. The project combines distributed ESP32-S3 nodes, Wi-Fi channel-state information, embedded development, and analysis software into one sensing platform.",
-    contribution: "System integration, embedded architecture, experimentation, sensing pipeline, and product direction.",
+    status: "ACTIVE DEVELOPMENT",
+    summary: "Privacy-focused room intelligence using distributed ESP32-S3 nodes and Wi-Fi CSI sensing for presence, vital signals, fall detection, and crowd occupancy.",
+    description: "RuVigil explores camera-free human sensing through Wi-Fi channel-state information. Five ESP32-S3 nodes form a distributed sensing platform designed around presence, physiological signals, fall events, and crowd occupancy while preserving visual privacy.",
+    contribution: "System integration, embedded architecture, sensing experiments, pipeline development, deployment design, and product direction.",
     stack: ["ESP32-S3", "Wi-Fi CSI", "Rust", "Python", "JavaScript", "TypeScript", "C"],
-    image: "assets/projects/ruvigil.svg",
-    repository: "https://github.com/0xAeterNova/RuVigil"
+    repository: "https://github.com/0xAeterNova/RuVigil",
+    color: "#22d3ee",
+    accent: "#10b981",
+    station: "sensor"
   },
   {
     slug: "phantom",
+    index: "02",
     name: "PHANTOM",
-    kicker: "Multimodal Artificial Intelligence",
+    short: "Multimodal behavioral AI.",
+    kicker: "AI / COMPUTER VISION / AUDIO",
     year: "2026",
-    featured: true,
-    status: "Under development",
-    summary: "A behavioral-analysis AI module combining facial understanding, age estimation, expression recognition, and voice-emotion analysis.",
-    description: "PHANTOM is designed as a multimodal perception system. It brings visual and audio signals into a single behavioral-analysis workflow, with separate models for demographic cues, facial emotion, and vocal emotion.",
-    contribution: "Dataset design, multimodal pipeline planning, model experimentation, integration, and system implementation.",
+    status: "UNDER DEVELOPMENT",
+    summary: "A multimodal behavioral-analysis system combining facial understanding, age estimation, expression recognition, and emotion analysis from voice tone.",
+    description: "PHANTOM brings visual and audio perception into one behavioral-analysis workflow. Separate models interpret age cues, facial emotion, and vocal emotion before their outputs are combined into one interaction layer.",
+    contribution: "Dataset planning, model experiments, computer-vision pipeline, audio-analysis workflow, multimodal integration, and implementation.",
     stack: ["Python", "Deep Learning", "Computer Vision", "Audio Analysis", "YOLO", "PyTorch"],
-    image: "assets/projects/phantom.svg",
-    repository: "https://github.com/0xAeterNova/PHANTOM"
+    repository: "https://github.com/0xAeterNova/PHANTOM",
+    color: "#a78bfa",
+    accent: "#22d3ee",
+    station: "ai"
   },
   {
     slug: "elif-linux",
-    name: "Elif Linux Distribution",
-    kicker: "Security / Linux",
+    index: "03",
+    name: "Elif Linux",
+    short: "A focused security workstation.",
+    kicker: "LINUX / REVERSE ENGINEERING / PWN",
     year: "2026",
-    featured: true,
-    status: "v1.0.0 · evolving",
-    summary: "A custom Linux environment shaped for reverse engineering, binary exploitation, cryptography, and digital-forensics workflows.",
-    description: "Elif is a focused security workstation rather than an everything-preinstalled distribution. The goal is a polished environment where reverse engineering, pwn, cryptography, and forensics tooling can be installed and maintained intentionally.",
-    contribution: "Distribution direction, workflow design, customization, security-tool integration, and system configuration.",
+    status: "V1.0.0 · EVOLVING",
+    summary: "A custom Linux environment designed around reverse engineering, binary exploitation, cryptography, digital forensics, and intentionally selected security tooling.",
+    description: "Elif is designed as a focused security workstation instead of an everything-preinstalled distribution. Its direction is a polished Linux environment where reverse engineering, Pwn, crypto, and forensics tooling can be added and maintained intentionally.",
+    contribution: "Distribution direction, system customization, workflow design, tool integration, security environment configuration, and release planning.",
     stack: ["Linux", "Bash", "Python", "Shell", "Reverse Engineering", "Pwn", "Forensics"],
-    image: "assets/projects/elif-linux.svg",
-    repository: "https://github.com/0xAeterNova/Elif-Linux-Distribution"
+    repository: "https://github.com/0xAeterNova/Elif-Linux-Distribution",
+    color: "#38bdf8",
+    accent: "#7c3aed",
+    station: "bunker"
   }
 ];
 
 export const skills = [
-  { group: "Core languages", items: ["C", "C++", "Python", "Rust", "Bash", "JavaScript", "SQL"] },
-  { group: "Robotics & embedded", items: ["ESP32-S3", "Raspberry Pi", "Arduino", "ROS", "Webots", "Sensors", "Embedded systems"] },
-  { group: "AI & data", items: ["Computer Vision", "Deep Learning", "PyTorch", "Pandas", "NumPy", "Data Analysis"] },
+  { group: "Core Languages", items: ["C", "C++", "Python", "Rust", "Bash", "JavaScript", "SQL"] },
+  { group: "Robotics / Embedded", items: ["ESP32-S3", "Raspberry Pi", "Arduino", "ROS", "Webots", "Sensors"] },
+  { group: "AI / Data", items: ["Computer Vision", "Deep Learning", "PyTorch", "Pandas", "NumPy"] },
   { group: "Security", items: ["Reverse Engineering", "Binary Exploitation", "Digital Forensics", "Linux", "CTF", "OSINT"] }
-];
-
-export const achievements = [
-  {
-    title: "Locked Temple · Writeup Challenge Winner",
-    type: "CTF / Reverse Engineering",
-    text: "Recognized for a technical writeup covering the Locked Temple reverse-engineering challenge.",
-    link: "https://github.com/0xAeterNova/upctf-writeups/blob/main/REV/Locked%20Temple/Write-Up.md"
-  }
 ];

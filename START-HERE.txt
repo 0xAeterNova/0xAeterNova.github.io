@@ -1,22 +1,59 @@
-0xAeterNova Portfolio — START HERE
+0xAeterNova // INTERACTIVE 3D PORTFOLIO V2
+===========================================
 
-1) Preview locally
-   Open a terminal inside this folder and run:
-       python -m http.server 8000
-   Then open:
-       http://localhost:8000
+THIS VERSION IS A 3D WORLD, NOT A NORMAL SCROLLING TEMPLATE.
 
-2) Add/update projects
-   Edit:
-       js/data.js
-   Add project images to:
-       assets/projects/
+FIRST PREVIEW
+-------------
+Windows:
+1. Extract the ZIP.
+2. Double-click start-local.bat
+3. Your browser opens http://localhost:8080
 
-3) Publish
-   Read:
-       PUBLISHING.md
+Linux/macOS:
+1. Open a terminal inside this folder.
+2. Run: ./start-local.sh
+3. Open http://localhost:8080
 
-Recommended GitHub repository name:
-   0xAeterNova.github.io
+Do not preview by double-clicking index.html directly. This site uses JavaScript modules,
+so it should be served through a local web server or GitHub Pages.
 
-Do NOT upload the outer folder as one folder. The repository root should directly contain index.html, projects.html, css/, js/, assets/, etc.
+CONTROLS
+--------
+WASD / Arrow keys : drive
+Shift             : boost
+Space             : brake
+Mouse drag        : move chase camera
+Mouse wheel       : zoom chase camera
+Enter or E        : interact with nearby world node
+M                  : holographic world map
+R                  : respawn / unstuck
+Esc                : close a panel or map
+
+EDIT YOUR CONTENT
+-----------------
+Open: js/data.js
+
+That file contains:
+- your profile links
+- projects
+- project descriptions
+- project tech stacks
+- skills
+
+ADD A PROJECT
+-------------
+1. Open js/data.js
+2. Copy one project object inside `projects`.
+3. Change slug, name, text, stack, repository, colors.
+4. For a completely custom 3D station, add a new station builder in js/world.js.
+   If you do not want to touch the 3D code yet, reuse station: "sensor", "ai", or "bunker".
+
+GITHUB BASE ART
+---------------
+The exact original GitHub profile hero from your uploaded repository is used here:
+assets/profile/profile-hero-dark.svg
+
+PUBLISHING
+----------
+Read PUBLISHING.md
