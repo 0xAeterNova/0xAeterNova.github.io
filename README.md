@@ -1,50 +1,49 @@
-# 0xAeterNova — Interactive 3D Portfolio
+# 0xAeterNova // The Living Archive
 
-A driveable WebGL portfolio world for **0xAeterNova / Zaid Tawalbeh**.
+An immersive Three.js portfolio for 0xAeterNova. The experience is built as a continuous spatial universe with cinematic transitions rather than conventional webpage navigation.
 
-This version deliberately avoids the normal "hero + cards + scrolling sections" structure. The portfolio is one persistent Three.js world with:
+## Art direction
 
-- a controllable cyber rover;
-- 3D world districts and project landmarks;
-- proximity interaction;
-- cinematic camera travel between portfolio pages;
-- a holographic world map;
-- live 3D project detail views;
-- animated HUD and page transitions;
-- responsive mobile controls;
-- auto/high/low graphics quality;
-- procedural 3D assets to keep the project lightweight;
-- the original `profile-hero-dark.svg` from the GitHub profile repository.
+Each realm uses a different visual language:
 
-## Run locally
+- **Origin** — cream / orange / ultraviolet living singularity
+- **Archive** — pink / cyan project constellation
+- **RuVigil** — cyan / amber electromagnetic sensor cathedral
+- **PHANTOM** — magenta / mint neural dreamscape
+- **Elif Linux** — acid-green / red machine core
+- **Breach** — yellow / orange glitch security arena
+- **Orbit** — gold / violet / emerald skills observatory
+- **Uplink** — mint / peach / indigo contact aurora
 
-### Windows
-Double-click `start-local.bat`.
+## Technical features
 
-### Linux / macOS
-```bash
-./start-local.sh
-```
+- Three.js WebGL world
+- UnrealBloom post-processing
+- realm-specific GlitchPass in the CTF world
+- realm-specific AfterimagePass in the PHANTOM world
+- custom animated GLSL cosmic background
+- procedural 3D geometry; no car/game mechanic
+- cinematic cubic Bézier camera flights
+- interactive raycast project artifacts
+- dynamic fog, lighting, bloom and palette interpolation
+- animated 3D project-specific worlds
+- generated 3D canvas-text signage
+- command palette
+- interactive world map
+- custom cursor and magnetic interface
+- optional generative WebAudio ambience
+- keyboard navigation
+- responsive UI
+- High / Low render modes
+- exact original GitHub profile hero used in About
+- data-driven project system
 
-Then open `http://localhost:8080`.
+## Core files
 
-## Content editing
+- `js/data.js` — content and projects
+- `js/world.js` — complete Three.js world engine
+- `js/app.js` — UI, routes, transitions and controls
+- `js/audio.js` — optional procedural ambience
+- `css/app.css` — all interface art direction
 
-Edit `js/data.js` for projects, links, descriptions, and skills.
-
-World construction is in `js/world.js`. UI/routing is in `js/main.js`. Styling is in `css/main.css`.
-
-## Direct page URLs
-
-The portfolio itself is a single continuous 3D experience, but convenience page URLs are included:
-
-- `projects.html` → `index.html#projects`
-- `cybersecurity.html` → `index.html#security`
-- `about.html` → `index.html#about`
-- `contact.html` → `index.html#contact`
-
-## Core technology
-
-The site imports Three.js as an ES module. All portfolio world assets are custom procedural geometry and your own profile assets; no Bruno Simon models or textures are included.
-
-See `CREDITS.md` and `PUBLISHING.md`.
+Read `START-HERE.md`, `ADDING-PROJECTS.md`, and `PUBLISHING.md`.

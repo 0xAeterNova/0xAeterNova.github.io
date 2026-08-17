@@ -1,78 +1,113 @@
 export const profile = {
-  handle: "0xAeterNova",
-  name: "Zaid Tawalbeh",
-  title: "Robotics & AI · Cybersecurity · CTF",
-  statement: "Building intelligent systems. Breaking systems to understand them.",
+  handle: '0xAeterNova',
+  name: 'Zaid Tawalbeh',
+  title: 'Robotics & AI · Cybersecurity · CTF',
+  statement: 'I build intelligent systems, explore machine behavior, and break software apart to understand how it really works.',
+  location: 'Jordan',
+  focus: ['Robotics & AI', 'Reverse Engineering', 'Binary Exploitation', 'Embedded Systems', 'Computer Vision'],
   links: {
-    github: "https://github.com/0xAeterNova",
-    linkedin: "https://www.linkedin.com/in/zaidtawalbeh/",
-    ctftime: "https://ctftime.org/user/245368",
-    team: "https://ctftime.org/team/412925",
-    linktree: "https://linktr.ee/0xAeterNova"
+    github: 'https://github.com/0xAeterNova',
+    linkedin: 'https://www.linkedin.com/in/zaidtawalbeh/',
+    ctftime: 'https://ctftime.org/user/245368',
+    team: 'https://ctftime.org/team/412925',
+    linktree: 'https://linktr.ee/0xAeterNova',
+    instagram: 'https://www.instagram.com/0xaeternova/',
+    telegram: 'https://t.me/OxAtereNova'
   }
 };
 
-// ADD NEW PROJECTS HERE ONLY.
-// The Projects panel and project detail view are generated from this array.
-// For a new project: copy an object, give it a unique slug, change the text/stack/link,
-// and optionally add a matching 3D station type/color.
 export const projects = [
   {
-    slug: "ruvigil",
-    index: "01",
-    name: "RuVigil",
-    short: "RF sensing without cameras.",
-    kicker: "AMBIENT INTELLIGENCE / EMBEDDED",
-    year: "2026",
-    status: "ACTIVE DEVELOPMENT",
-    summary: "Privacy-focused room intelligence using distributed ESP32-S3 nodes and Wi-Fi CSI sensing for presence, vital signals, fall detection, and crowd occupancy.",
-    description: "RuVigil explores camera-free human sensing through Wi-Fi channel-state information. Five ESP32-S3 nodes form a distributed sensing platform designed around presence, physiological signals, fall events, and crowd occupancy while preserving visual privacy.",
-    contribution: "System integration, embedded architecture, sensing experiments, pipeline development, deployment design, and product direction.",
-    stack: ["ESP32-S3", "Wi-Fi CSI", "Rust", "Python", "JavaScript", "TypeScript", "C"],
-    repository: "https://github.com/0xAeterNova/RuVigil",
-    color: "#22d3ee",
-    accent: "#10b981",
-    station: "sensor"
+    slug: 'ruvigil',
+    name: 'RuVigil',
+    label: '01 / RF SENSING',
+    tagline: 'Privacy-first human sensing without cameras.',
+    summary: 'A camera-free room monitoring system using a five-node ESP32-S3 deployment and Wi-Fi CSI sensing for presence, vital-signal, fall and crowd-awareness research.',
+    long: 'RuVigil explores how radio-frequency sensing can turn ordinary Wi-Fi signals into a privacy-focused perception layer. The system combines multiple ESP32-S3 nodes, signal processing and software services to study presence, motion, vital signals, falls and occupancy without relying on a visible camera feed.',
+    year: '2026',
+    status: 'Active development',
+    role: 'Developer',
+    stack: ['ESP32-S3', 'Wi-Fi CSI', 'Rust', 'Python', 'JavaScript', 'TypeScript', 'C'],
+    repository: 'https://github.com/0xAeterNova/RuVigil',
+    poster: 'assets/projects/ruvigil.svg',
+    realm: 'ruvigil',
+    accent: '#47f5ff'
   },
   {
-    slug: "phantom",
-    index: "02",
-    name: "PHANTOM",
-    short: "Multimodal behavioral AI.",
-    kicker: "AI / COMPUTER VISION / AUDIO",
-    year: "2026",
-    status: "UNDER DEVELOPMENT",
-    summary: "A multimodal behavioral-analysis system combining facial understanding, age estimation, expression recognition, and emotion analysis from voice tone.",
-    description: "PHANTOM brings visual and audio perception into one behavioral-analysis workflow. Separate models interpret age cues, facial emotion, and vocal emotion before their outputs are combined into one interaction layer.",
-    contribution: "Dataset planning, model experiments, computer-vision pipeline, audio-analysis workflow, multimodal integration, and implementation.",
-    stack: ["Python", "Deep Learning", "Computer Vision", "Audio Analysis", "YOLO", "PyTorch"],
-    repository: "https://github.com/0xAeterNova/PHANTOM",
-    color: "#a78bfa",
-    accent: "#22d3ee",
-    station: "ai"
+    slug: 'phantom',
+    name: 'PHANTOM',
+    label: '02 / HUMAN SIGNAL AI',
+    tagline: 'A multimodal behavioral analysis engine.',
+    summary: 'A deep-learning module for age estimation, male-or-female presentation, facial emotion recognition and emotion analysis from voice tone.',
+    long: 'PHANTOM combines visual and audio signals into one experimental behavioral-analysis pipeline. The project studies facial emotion, age estimation and voice emotion while presenting the outputs as a unified perception system rather than isolated models.',
+    year: '2026',
+    status: 'Under development',
+    role: 'Developer',
+    stack: ['Deep Learning', 'Computer Vision', 'Audio Analysis', 'Python', 'Camera', 'Microphone'],
+    repository: 'https://github.com/0xAeterNova/PHANTOM',
+    poster: 'assets/projects/phantom.svg',
+    realm: 'phantom',
+    accent: '#ff5bd7'
   },
   {
-    slug: "elif-linux",
-    index: "03",
-    name: "Elif Linux",
-    short: "A focused security workstation.",
-    kicker: "LINUX / REVERSE ENGINEERING / PWN",
-    year: "2026",
-    status: "V1.0.0 · EVOLVING",
-    summary: "A custom Linux environment designed around reverse engineering, binary exploitation, cryptography, digital forensics, and intentionally selected security tooling.",
-    description: "Elif is designed as a focused security workstation instead of an everything-preinstalled distribution. Its direction is a polished Linux environment where reverse engineering, Pwn, crypto, and forensics tooling can be added and maintained intentionally.",
-    contribution: "Distribution direction, system customization, workflow design, tool integration, security environment configuration, and release planning.",
-    stack: ["Linux", "Bash", "Python", "Shell", "Reverse Engineering", "Pwn", "Forensics"],
-    repository: "https://github.com/0xAeterNova/Elif-Linux-Distribution",
-    color: "#38bdf8",
-    accent: "#7c3aed",
-    station: "bunker"
+    slug: 'elif-linux',
+    name: 'Elif Linux',
+    label: '03 / SECURITY OS',
+    tagline: 'A Linux environment shaped for low-level security work.',
+    summary: 'A custom Linux distribution focused on reverse engineering, binary exploitation, cryptography and digital-forensics workflows.',
+    long: 'Elif is a personal Linux environment built around the workflows that matter most for low-level security practice: reverse engineering, binary exploitation, cryptography and forensics. The project is less about shipping every tool and more about creating a focused system that feels intentional.',
+    year: '2026',
+    status: 'v1.0.0 · continuing development',
+    role: 'Creator / Developer',
+    stack: ['Linux', 'Bash', 'Python', 'Shell', 'Security Tooling', 'System Customization'],
+    repository: 'https://github.com/0xAeterNova/Elif-Linux-Distribution',
+    poster: 'assets/projects/elif.svg',
+    realm: 'elif',
+    accent: '#b9ff43'
   }
 ];
 
 export const skills = [
-  { group: "Core Languages", items: ["C", "C++", "Python", "Rust", "Bash", "JavaScript", "SQL"] },
-  { group: "Robotics / Embedded", items: ["ESP32-S3", "Raspberry Pi", "Arduino", "ROS", "Webots", "Sensors"] },
-  { group: "AI / Data", items: ["Computer Vision", "Deep Learning", "PyTorch", "Pandas", "NumPy"] },
-  { group: "Security", items: ["Reverse Engineering", "Binary Exploitation", "Digital Forensics", "Linux", "CTF", "OSINT"] }
+  { name: 'Robotics', family: 'Build', level: 0.92 },
+  { name: 'Artificial Intelligence', family: 'Think', level: 0.90 },
+  { name: 'Computer Vision', family: 'Think', level: 0.84 },
+  { name: 'Embedded Systems', family: 'Build', level: 0.86 },
+  { name: 'Reverse Engineering', family: 'Break', level: 0.82 },
+  { name: 'Binary Exploitation', family: 'Break', level: 0.74 },
+  { name: 'Linux', family: 'Systems', level: 0.90 },
+  { name: 'Python', family: 'Code', level: 0.92 },
+  { name: 'C / C++', family: 'Code', level: 0.86 },
+  { name: 'Rust', family: 'Code', level: 0.66 },
+  { name: 'Digital Forensics', family: 'Break', level: 0.72 },
+  { name: 'CTF', family: 'Break', level: 0.82 }
+];
+
+export const achievements = [
+  {
+    title: 'Writeup Challenge Winner — Locked Temple',
+    text: 'Technical reverse-engineering writeup selected as a challenge winner.',
+    url: 'https://github.com/0xAeterNova/upctf-writeups/blob/main/REV/Locked%20Temple/Write-Up.md'
+  },
+  {
+    title: 'GeomRavage',
+    text: 'CTF team focused on practical competition work.',
+    url: 'https://ctftime.org/team/412925'
+  }
+];
+
+export const realms = [
+  { id: 'home', name: 'Origin', subtitle: 'Living Singularity', number: '00', palette: ['#f7f0d8', '#ff6a3d', '#5b2cff'], icon: '✦' },
+  { id: 'projects', name: 'Archive', subtitle: 'Project Constellation', number: '01', palette: ['#fff4cb', '#ff2ea6', '#19e6ff'], icon: '◈' },
+  { id: 'cyber', name: 'Breach', subtitle: 'CTF / Security', number: '02', palette: ['#faff00', '#ff5a1f', '#0a0a08'], icon: '⌁' },
+  { id: 'about', name: 'Orbit', subtitle: 'About / Skills', number: '03', palette: ['#ffd87a', '#7d52ff', '#26e6b4'], icon: '◎' },
+  { id: 'contact', name: 'Uplink', subtitle: 'Contact', number: '04', palette: ['#88ffd5', '#ff9b78', '#6755ff'], icon: '⌁' }
+];
+
+export const commandEntries = [
+  { label: 'Go to Origin', route: 'home', keywords: 'home origin intro' },
+  { label: 'Open Project Archive', route: 'projects', keywords: 'projects work archive' },
+  ...projects.map(p => ({ label: `Project · ${p.name}`, route: `project/${p.slug}`, keywords: `${p.name} ${p.stack.join(' ')}` })),
+  { label: 'Open Cyber Realm', route: 'cyber', keywords: 'ctf cybersecurity reverse engineering pwn' },
+  { label: 'Open About Orbit', route: 'about', keywords: 'about skills profile education' },
+  { label: 'Open Contact Uplink', route: 'contact', keywords: 'contact links github linkedin' }
 ];

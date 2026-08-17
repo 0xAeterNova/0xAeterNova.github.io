@@ -3,194 +3,125 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#030712" />
-  <meta name="description" content="0xAeterNova — interactive 3D portfolio of Zaid Tawalbeh: Robotics & AI, cybersecurity, CTF, embedded systems." />
-  <title>0xAeterNova — Interactive 3D Portfolio</title>
-  <link rel="icon" href="assets/ui/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="css/main.css" />
+  <meta name="theme-color" content="#070707" />
+  <meta name="description" content="0xAeterNova — immersive 3D portfolio for robotics, AI, cybersecurity and CTF work." />
+  <title>0xAeterNova // The Living Archive</title>
+  <link rel="icon" href="assets/ui/favicon.svg" />
+  <link rel="stylesheet" href="css/app.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
-<body>
-  <div id="app">
-    <canvas id="world" aria-label="Interactive 3D portfolio world"></canvas>
+<body class="realm-home">
+  <canvas id="webgl" aria-hidden="true"></canvas>
+  <div id="grain"></div>
+  <div id="vignette"></div>
+  <div id="scanlines"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
 
-    <div class="noise" aria-hidden="true"></div>
-    <div class="scanline" aria-hidden="true"></div>
+  <div id="intro">
+    <div class="intro-core">
+      <div class="intro-code" id="intro-code">Booting spatial archive // calibrating neural geometry</div>
+      <div class="intro-title">AETER<br>NOVA</div>
+      <div class="intro-progress"><i id="intro-bar"></i></div>
+      <div class="intro-meta"><span id="intro-step">Generating world 01</span><span id="intro-pct">00%</span></div>
+    </div>
+    <button id="skip-intro" type="button">Skip intro →</button>
+  </div>
 
-    <section id="boot" class="boot" aria-label="Portfolio introduction">
-      <div class="boot__orb" aria-hidden="true"><span></span><span></span><span></span></div>
-      <div class="boot__content">
-        <p class="eyebrow"><span class="dot"></span> SYSTEM // AETERNOVA_WORLD</p>
-        <h1><span>0x</span>AeterNova</h1>
-        <p class="boot__subtitle">ROBOTICS & AI <i>×</i> CYBERSECURITY <i>×</i> CTF</p>
-        <p class="boot__copy">Drive through an interactive world built around my work. Every district is a project, discipline, or part of my story.</p>
-        <button id="enterWorld" class="primary-button">
-          <span>ENTER WORLD</span><b>↗</b>
-        </button>
-        <p class="boot__hint">WASD / ARROWS TO DRIVE · ENTER TO INTERACT</p>
-      </div>
-    </section>
+  <div id="transition" aria-hidden="true"><div class="slice"></div><div class="slice"></div></div>
 
-    <header id="hud" class="hud is-hidden">
-      <button class="brand" data-route="home" aria-label="Go home">
-        <span class="brand__sigil">0x</span><span class="brand__name">AETERNOVA</span>
-      </button>
-      <nav class="nav" aria-label="Portfolio navigation">
-        <button data-route="projects">PROJECTS</button>
-        <button data-route="security">CYBER</button>
-        <button data-route="about">ABOUT</button>
-        <button data-route="contact">CONTACT</button>
-      </nav>
-      <div class="hud__actions">
-        <button id="mapButton" class="hud-button" aria-label="Open world map">MAP [M]</button>
-        <button id="qualityButton" class="hud-button" aria-label="Change graphics quality">AUTO</button>
-        <a class="hud-button hud-button--link" href="https://github.com/0xAeterNova" target="_blank" rel="noreferrer">GITHUB ↗</a>
+  <div id="hud">
+    <header class="topbar">
+      <a class="brand magnetic" href="#/home" data-route="home" aria-label="Go home">
+        <span class="brand-mark"><span>0x</span></span>
+        <span class="brand-name">0xAeterNova<small>The Living Archive</small></span>
+      </a>
+      <div class="top-actions">
+        <button class="pill-btn magnetic" id="map-btn" type="button">World map · M</button>
+        <button class="pill-btn magnetic" id="command-btn" type="button">Command · /</button>
+        <button class="icon-btn magnetic" id="sound-btn" type="button" aria-label="Toggle generative audio">◌</button>
+        <button class="icon-btn magnetic" id="quality-btn" type="button" aria-label="Toggle rendering quality">Q</button>
       </div>
     </header>
 
-    <aside id="telemetry" class="telemetry is-hidden" aria-label="Vehicle telemetry">
-      <div><span>VELOCITY</span><strong id="speedValue">000</strong><small>KM/H</small></div>
-      <div><span>SECTOR</span><strong id="sectorValue">HOME</strong></div>
-      <div><span>SIGNAL</span><strong class="signal">●●●●</strong></div>
-    </aside>
+    <nav class="realm-rail" id="realm-rail" aria-label="Portfolio realms"></nav>
 
-    <div id="interaction" class="interaction is-hidden">
-      <span class="interaction__key">ENTER</span>
-      <span id="interactionText">INTERACT</span>
-    </div>
+    <div class="coords"><span class="pulse"></span><span id="coord-copy">REALM // 00.000 / 00.000</span></div>
 
-    <div id="controls" class="controls is-hidden">
-      <div class="controls__keys"><kbd>W</kbd><div><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div></div>
-      <p><b>DRIVE</b><span>SHIFT boost · SPACE brake · mouse drag camera</span></p>
-    </div>
+    <footer class="bottomline">
+      <div class="realm-id"><span class="num" id="realm-number">00</span><span class="copy">CURRENT REALM<strong id="realm-name">ORIGIN</strong><span id="realm-subtitle">LIVING SINGULARITY</span></span></div>
+      <div class="hint">DRAG TO ORBIT · WHEEL TO SHIFT DEPTH <kbd>M</kbd>MAP <kbd>/</kbd>COMMAND <kbd>F</kbd>FOCUS <kbd>R</kbd>RESET</div>
+    </footer>
+  </div>
 
-    <div id="mobileControls" class="mobile-controls is-hidden" aria-label="Touch driving controls">
-      <div class="mobile-pad">
-        <button data-control="forward">▲</button>
-        <div><button data-control="left">◀</button><button data-control="backward">▼</button><button data-control="right">▶</button></div>
-      </div>
-      <button class="mobile-action" data-control="interact">INTERACT</button>
-    </div>
-
-
-    <section id="mapOverlay" class="map-overlay" aria-label="World map">
-      <div class="map-shell">
-        <header><div><p class="eyebrow">HOLOGRAPHIC NAVIGATION</p><h2>WORLD MAP</h2></div><button id="mapClose" class="panel-close" aria-label="Close map">×</button></header>
-        <div class="map-grid">
-          <div id="mapPlayer" class="map-player"><i></i><span>YOU</span></div>
-          <button class="map-node map-node--home" data-map-route="home"><b>00</b><span>HOME</span></button>
-          <button class="map-node map-node--ruvigil" data-map-project="ruvigil"><b>01</b><span>RUVIGIL</span></button>
-          <button class="map-node map-node--phantom" data-map-project="phantom"><b>02</b><span>PHANTOM</span></button>
-          <button class="map-node map-node--elif" data-map-project="elif-linux"><b>03</b><span>ELIF</span></button>
-          <button class="map-node map-node--security" data-map-route="security"><b>04</b><span>CYBER</span></button>
-          <button class="map-node map-node--about" data-map-route="about"><b>05</b><span>ABOUT</span></button>
-          <button class="map-node map-node--contact" data-map-route="contact"><b>06</b><span>UPLINK</span></button>
-          <svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M50 52 L50 28 M50 52 L24 38 M50 52 L76 38 M50 52 L83 58 M50 52 L17 60 M50 52 L50 84"/><path d="M24 38 L50 28 L76 38"/></svg>
+  <main id="content-layer" aria-live="polite">
+    <section class="view active" id="view-home" data-view="home">
+      <div class="hero-copy">
+        <div class="eyebrow">A spatial portfolio by Zaid Tawalbeh</div>
+        <h1 class="display">Build.<span class="gradient">Break. Evolve.</span></h1>
+        <p class="hero-lead">Robotics & AI meet reverse engineering, embedded systems and CTF work inside one living archive. Every realm is a different part of how I think, build and explore.</p>
+        <div class="hero-buttons">
+          <button class="cta primary magnetic" type="button" data-route="projects">Enter the archive <span>→</span></button>
+          <a class="cta magnetic" href="https://github.com/0xAeterNova" target="_blank" rel="noreferrer">GitHub ↗</a>
         </div>
-        <footer><span>M // TOGGLE MAP</span><span>R // RESPAWN</span><span>ENTER // INTERACT</span></footer>
+      </div>
+      <div class="hero-orbit-note"><b>THIS WORLD IS INTERACTIVE</b>Move the pointer to disturb the singularity. Drag to orbit. Scroll changes depth. Use the map or command palette to jump between realms.</div>
+    </section>
+
+    <section class="view" id="view-projects" data-view="projects">
+      <div class="section-panel">
+        <div class="panel-kicker">01 / PROJECT CONSTELLATION</div>
+        <h2 class="panel-title">The Archive</h2>
+        <p class="panel-copy">Projects are not cards here. Each one is a spatial artifact with its own material language and destination. Select a signal to pull its world into focus.</p>
+        <div class="panel-mini"><div class="mini-stat"><small>Featured artifacts</small><b>03 active worlds</b></div><div class="mini-stat"><small>Interaction</small><b>Click a signal / use keys</b></div></div>
+      </div>
+      <div class="project-orbit-ui" id="project-orbit-ui"></div>
+    </section>
+
+    <section class="view" id="view-project" data-view="project"><article class="project-detail" id="project-detail"></article></section>
+
+    <section class="view" id="view-cyber" data-view="cyber">
+      <div class="section-panel">
+        <div class="panel-kicker">02 / BREACH REALM</div>
+        <h2 class="panel-title">Break it.<br>Understand it.</h2>
+        <p class="panel-copy">Reverse engineering and binary exploitation turn software into a puzzle of instructions, memory and assumptions. CTF work is where that curiosity becomes measurable practice.</p>
+        <div class="panel-mini"><div class="mini-stat"><small>Team</small><b>GeomRavage</b></div><div class="mini-stat"><small>Primary focus</small><b>REV / PWN</b></div></div>
+      </div>
+      <div class="cyber-console"><pre><span class="prompt">root@0xaeternova:~#</span> whoami
+robotics_ai + reverse_engineering + pwn
+
+<span class="prompt">root@0xaeternova:~#</span> current_focus
+COAE / CPTS · Hack The Box · CTF tournaments
+
+<span class="prompt">root@0xaeternova:~#</span> status
+learning by taking systems apart █</pre><div class="cyber-links"><a class="cta" target="_blank" rel="noreferrer" href="https://ctftime.org/user/245368">CTFtime ↗</a><a class="cta" target="_blank" rel="noreferrer" href="https://ctftime.org/team/412925">GeomRavage ↗</a><a class="cta" target="_blank" rel="noreferrer" href="https://github.com/0xAeterNova/upctf-writeups/blob/main/REV/Locked%20Temple/Write-Up.md">Winning writeup ↗</a></div></div>
+    </section>
+
+    <section class="view" id="view-about" data-view="about">
+      <div class="about-grid">
+        <div class="about-card"><img class="about-hero" src="assets/profile/profile-hero-dark.svg" alt="0xAeterNova original GitHub hero artwork" /></div>
+        <div class="about-copy"><div class="eyebrow">03 / ORBITAL OBSERVATORY</div><h2>Between machines<br>and imagination.</h2><p>I am a multidisciplinary Robotics & Artificial Intelligence student interested in systems that perceive, reason and interact with the real world. My work also crosses into cybersecurity, where reverse engineering and CTF practice sharpen how I understand software at a lower level. I am especially drawn to the overlap between robotics, AI, medicine, security, simulation and space exploration.</p><div class="skill-cloud" id="skill-cloud"></div></div>
       </div>
     </section>
 
-    <div id="routeTransition" class="route-transition" aria-hidden="true">
-      <div class="route-transition__line"></div>
-      <div class="route-transition__core">0x</div>
-      <div class="route-transition__label">TRAVERSING</div>
-    </div>
+    <section class="view" id="view-contact" data-view="contact">
+      <div class="contact-panel"><div class="eyebrow" style="justify-content:center">04 / AURORA UPLINK</div><h2>Transmit<br>a signal.</h2><p>Projects, competitions, robotics, AI, low-level security, research, or something strange enough to be interesting — open a channel.</p><div class="contact-links" id="contact-links"></div></div>
+    </section>
+  </main>
 
-    <main id="panelLayer" class="panel-layer" aria-live="polite">
-      <article id="homePanel" class="world-panel world-panel--home" data-page="home">
-        <button class="panel-close" aria-label="Close panel">×</button>
-        <div class="home-panel__content">
-          <p class="eyebrow">WELCOME // NODE_00</p>
-          <h2>BUILDING THE<br><span>INTELLIGENT EDGE.</span></h2>
-          <p>I’m Zaid Tawalbeh — <b>0xAeterNova</b>. I work across robotics, artificial intelligence, embedded systems, reverse engineering, and offensive security.</p>
-          <div class="home-panel__actions">
-            <button class="primary-button" data-route="projects"><span>EXPLORE PROJECTS</span><b>→</b></button>
-            <a class="text-link" href="https://github.com/0xAeterNova" target="_blank" rel="noreferrer">github.com/0xAeterNova ↗</a>
-          </div>
-        </div>
-        <div class="home-panel__visual">
-          <img src="assets/ui/hero-placeholder.svg" data-src="assets/profile/profile-hero-dark.svg" decoding="async" alt="0xAeterNova original GitHub profile hero" />
-        </div>
-      </article>
+  <div id="map" role="dialog" aria-modal="true" aria-label="World map"><div class="map-board" id="map-board"><div class="map-title">AETERNOVA // REALM TOPOLOGY</div></div></div>
 
-      <article id="projectsPanel" class="world-panel world-panel--projects" data-page="projects">
-        <button class="panel-close" aria-label="Close panel">×</button>
-        <div class="panel-heading">
-          <p class="eyebrow">PROJECT DISTRICT // 01</p>
-          <h2>SELECTED <span>BUILDS</span></h2>
-          <p>Three systems, three different layers of computing. Drive to their world stations or open them here.</p>
-        </div>
-        <div id="projectCards" class="project-cards"></div>
-      </article>
+  <div id="command" role="dialog" aria-modal="true" aria-label="Command palette"><div class="command-box"><input class="command-input" id="command-input" placeholder="Type a destination, project or skill…" autocomplete="off" /><div class="command-results" id="command-results"></div></div></div>
 
-      <article id="securityPanel" class="world-panel world-panel--security" data-page="security">
-        <button class="panel-close" aria-label="Close panel">×</button>
-        <div class="security-grid">
-          <section>
-            <p class="eyebrow">CYBER ARENA // 02</p>
-            <h2>BREAK.<br><span>UNDERSTAND.</span><br>HARDEN.</h2>
-            <p>My security work centers on CTF competition and low-level problem solving: reverse engineering, binary exploitation, forensics, Linux, and OSINT.</p>
-            <div class="security-links">
-              <a href="https://ctftime.org/user/245368" target="_blank" rel="noreferrer">CTFTIME PROFILE ↗</a>
-              <a href="https://ctftime.org/team/412925" target="_blank" rel="noreferrer">GEOMRAVAGE ↗</a>
-            </div>
-          </section>
-          <div class="radar-card">
-            <div class="radar"><i></i><i></i><i></i><i></i><b></b></div>
-            <div class="radar-meta"><span>ACTIVE FOCUS</span><strong>REV / PWN</strong><small>COAE · CPTS · CTF</small></div>
-          </div>
-          <a class="achievement-card" href="https://github.com/0xAeterNova/upctf-writeups/blob/main/REV/Locked%20Temple/Write-Up.md" target="_blank" rel="noreferrer">
-            <img src="assets/ui/asset-placeholder.svg" data-src="assets/profile/trophy-1.png" alt="Locked Temple writeup challenge trophy" />
-            <div><small>ACHIEVEMENT</small><h3>Locked Temple</h3><p>Writeup Challenge Winner</p><span>OPEN WRITEUP ↗</span></div>
-          </a>
-        </div>
-      </article>
+  <div class="toast" id="toast"></div>
 
-      <article id="aboutPanel" class="world-panel world-panel--about" data-page="about">
-        <button class="panel-close" aria-label="Close panel">×</button>
-        <div class="about-layout">
-          <div class="about-art">
-            <img src="assets/ui/hero-placeholder.svg" data-src="assets/profile/profile-hero-dark.svg" decoding="async" alt="Original 0xAeterNova GitHub hero artwork" />
-            <div class="about-art__tag">SOURCE // GITHUB_PROFILE_BASE</div>
-          </div>
-          <section class="about-copy">
-            <p class="eyebrow">OBSERVATORY // 03</p>
-            <h2>0xAeterNova<br><span>ZAID TAWALBEH</span></h2>
-            <p>I’m a Robotics & Artificial Intelligence student who likes working where software meets the physical world. My projects combine sensing, AI, embedded development, Linux, and security.</p>
-            <p>I’m especially interested in systems that are intelligent <em>and</em> resilient: autonomous robotics, computer vision, human sensing, reverse engineering, and security research.</p>
-            <div id="skillMatrix" class="skill-matrix"></div>
-          </section>
-        </div>
-      </article>
-
-      <article id="contactPanel" class="world-panel world-panel--contact" data-page="contact">
-        <button class="panel-close" aria-label="Close panel">×</button>
-        <div class="contact-shell">
-          <div class="contact-orbit" aria-hidden="true"><i></i><i></i><i></i><b>0x</b></div>
-          <div>
-            <p class="eyebrow">UPLINK // 04</p>
-            <h2>START A<br><span>CONNECTION.</span></h2>
-            <p>Projects, robotics, AI, cybersecurity, CTF, research, competitions, or a difficult technical idea worth building.</p>
-            <div class="contact-links">
-              <a href="https://www.linkedin.com/in/zaidtawalbeh/" target="_blank" rel="noreferrer"><span>LINKEDIN</span><b>↗</b></a>
-              <a href="https://github.com/0xAeterNova" target="_blank" rel="noreferrer"><span>GITHUB</span><b>↗</b></a>
-              <a href="https://ctftime.org/user/245368" target="_blank" rel="noreferrer"><span>CTFTIME</span><b>↗</b></a>
-              <a href="https://linktr.ee/0xAeterNova" target="_blank" rel="noreferrer"><span>LINKTREE</span><b>↗</b></a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article id="projectDetailPanel" class="world-panel world-panel--detail" data-page="project-detail">
-        <button class="panel-close" aria-label="Close panel">×</button>
-        <div id="projectDetail"></div>
-      </article>
-    </main>
-
-    <div id="toast" class="toast"></div>
-  </div>
-
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

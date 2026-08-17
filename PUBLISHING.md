@@ -1,81 +1,54 @@
-# Publish 0xAeterNova Portfolio on GitHub Pages
+# Publish on GitHub Pages
 
-## 1. Create the GitHub Pages repository
+## 1. Create the website repository
 
-Create a **public** repository named exactly:
+Create a new public repository named exactly:
 
 `0xAeterNova.github.io`
 
-Keep the existing `0xAeterNova/0xAeterNova` repository as your GitHub profile README repository.
+Keep your existing `0xAeterNova/0xAeterNova` repository as your GitHub profile README. Do not replace it with this project.
 
-## 2. Upload this website
+## 2. Upload this project's CONTENTS
 
-Extract the ZIP. Upload **the contents of this folder** to the root of `0xAeterNova.github.io`.
-
-Correct:
+Your repository root should look like this:
 
 ```text
 0xAeterNova.github.io/
 ├── index.html
+├── 404.html
 ├── projects.html
-├── cybersecurity.html
+├── cyber.html
 ├── about.html
 ├── contact.html
 ├── css/
 ├── js/
-└── assets/
+├── assets/
+├── .nojekyll
+└── ...documentation files
 ```
 
-Wrong:
+Do not upload an extra outer folder around these files.
 
-```text
-0xAeterNova.github.io/
-└── 0xAeterNova-portfolio-v2/
-    └── index.html
-```
+## 3. Enable Pages
 
-## 3. Enable GitHub Pages
+GitHub repository → `Settings` → `Pages`
 
-In the repository:
+Choose:
 
-1. Open **Settings**.
-2. Open **Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Select branch **main**.
-5. Select folder **/(root)**.
-6. Save.
+- Source: `Deploy from a branch`
+- Branch: `main`
+- Folder: `/(root)`
 
-Your address will be:
+Save.
+
+The site will be available at:
 
 `https://0xaeternova.github.io/`
 
-## 4. Update projects later
+## 4. Update it later
 
-The normal workflow is intentionally simple:
+Edit `js/data.js` and add project images under `assets/projects/`, commit, and push. GitHub Pages redeploys automatically.
 
-1. Edit `js/data.js`.
-2. Commit the change.
-3. GitHub Pages republishes automatically.
+## Optional custom domain
 
-You do not make a new HTML file for each new project.
-
-### Adding a fourth project
-
-Copy a project object in `js/data.js`. Give it a unique `slug`.
-
-For the 3D world, you have two choices:
-
-- **Fast:** reuse `station: "sensor"`, `"ai"`, or `"bunker"`.
-- **Custom:** create a new project station function in `js/world.js` and place it in the world.
-
-## 5. Where to edit things
-
-- `js/data.js` — projects, profile links, skills
-- `js/world.js` — 3D world, rover, stations, camera, quality
-- `js/main.js` — page routing, interactions, map, UI behavior
-- `css/main.css` — visual design and responsive layout
-- `assets/profile/profile-hero-dark.svg` — exact GitHub base hero
-
-## 6. Custom domain later
-
-If you later buy a domain, configure it in **Settings → Pages → Custom domain** after the GitHub Pages site is working normally.
+When you buy a domain later, add it under GitHub `Settings → Pages → Custom domain`, then follow GitHub's DNS instructions.

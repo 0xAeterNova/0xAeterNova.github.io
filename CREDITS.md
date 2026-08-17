@@ -1,7 +1,14 @@
-# Credits / inspiration
+# Credits
 
-- **Three.js** — JavaScript 3D rendering library, MIT License.
-- **Bruno Simon portfolio** — interaction/reference inspiration: a portfolio expressed as an explorable 3D world rather than a conventional webpage.
-- **0xAeterNova visual identity and profile artwork** — sourced from the user's uploaded `0xAeterNova/0xAeterNova` GitHub profile repository.
+## Three.js
 
-This portfolio does not redistribute Bruno Simon's models, textures, audio, world assets, or portfolio code. Its world, rover, geometry, interface, transitions, and 0xAeterNova art direction are implemented specifically for this portfolio.
+This portfolio uses Three.js via a version-pinned jsDelivr import map.
+
+Three.js is Copyright © 2010-2026 three.js authors and distributed under the MIT License.
+
+Project: https://threejs.org/
+Repository: https://github.com/mrdoob/three.js
+
+## Profile assets
+
+The profile hero, 0xA emblem, robotic cyber character and trophy image in `assets/profile/` were copied from the supplied `0xAeterNova/0xAeterNova` repository so the portfolio remains tied to the existing GitHub identity.
