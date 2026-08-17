@@ -1,0 +1,22 @@
+0xAeterNova Portfolio — START HERE
+
+1) Preview locally
+   Open a terminal inside this folder and run:
+       python -m http.server 8000
+   Then open:
+       http://localhost:8000
+
+2) Add/update projects
+   Edit:
+       js/data.js
+   Add project images to:
+       assets/projects/
+
+3) Publish
+   Read:
+       PUBLISHING.md
+
+Recommended GitHub repository name:
+   0xAeterNova.github.io
+
+Do NOT upload the outer folder as one folder. The repository root should directly contain index.html, projects.html, css/, js/, assets/, etc.
