@@ -1,38 +1,23 @@
 # Adding a project
 
-Open `js/data.js` and add one object to the `projects` array.
+Most portfolio content lives in `js/data.js`.
 
-```js
-{
-  slug: 'project-slug',
-  name: 'Project Name',
-  label: '04 / CATEGORY',
-  tagline: 'One strong sentence.',
-  summary: 'Short archive description.',
-  long: 'Full project description.',
-  year: '2026',
-  status: 'Active development',
-  role: 'Creator / Developer',
-  stack: ['Python', 'C++', 'Three.js'],
-  repository: 'https://github.com/0xAeterNova/project',
-  poster: 'assets/projects/project.webp',
-  realm: 'generic',
-  accent: '#7cffc4'
-}
-```
+Add another object inside `AETER_DATA.projects` using a unique `slug`, project name, description, stack, repository URL and palette.
 
-Then put the poster image in `assets/projects/`.
+The Project Archive list, search system and data-driven project detail screen are generated from that file.
 
-The new project automatically gets:
+For the project artwork, create:
 
-- an Archive entry
-- a search/command entry
-- a `#/project/project-slug` route
-- a reusable project information view
-- a generated 3D artifact
+`assets/projects/YOUR-SLUG.svg`
 
-## Give a flagship project a custom 3D machine
+For a major project that deserves a custom 3D environment, add a scene branch inside `buildProject()` in `js/engine.js`. Existing visual languages are:
 
-For major projects, add a builder in `js/world.js`, similar to `buildRuVigil`, `buildPhantom`, or `buildElif`, and route to it from `buildProject()`.
+- `rf` — sensing / distributed hardware.
+- `neural` — AI / computer vision / neural networks.
+- `forge` — Linux / systems / low-level tooling.
 
-You still do not need a separate HTML page.
+You can also invent a new scene type without changing the UI system.
+
+## Important
+
+The project object is the single source of truth for the visible text. Do not duplicate the project description across multiple HTML pages.

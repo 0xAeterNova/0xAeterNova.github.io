@@ -1,23 +1,21 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-set "PORT=8080"
-set "PYTHON_CMD="
-where py >nul 2>&1 && set "PYTHON_CMD=py"
-if not defined PYTHON_CMD where python >nul 2>&1 && set "PYTHON_CMD=python"
-if not defined PYTHON_CMD (
-  echo.
-  echo [AeterNova] Python was not found.
-  echo Install Python 3, then run this file again.
-  echo.
-  pause
-  exit /b 1
+echo.
+echo 0xAeterNova // Interface Zero V5
+echo Starting local server at http://127.0.0.1:8080
+echo.
+where py >nul 2>nul
+if %errorlevel%==0 (
+  start "" cmd /c "timeout /t 2 >nul & start http://127.0.0.1:8080"
+  py -m http.server 8080 --bind 127.0.0.1
+  goto :eof
 )
-echo.
-echo  0xAeterNova // The Impossible Machine V4.1
-echo  Starting server on http://127.0.0.1:%PORT%/
-echo.
-start "AeterNova Local Server" /min cmd /c "%PYTHON_CMD% -m http.server %PORT% --bind 127.0.0.1"
-timeout /t 2 /nobreak >nul
-start "" "http://127.0.0.1:%PORT%/"
-exit /b 0
+where python >nul 2>nul
+if %errorlevel%==0 (
+  start "" cmd /c "timeout /t 2 >nul & start http://127.0.0.1:8080"
+  python -m http.server 8080 --bind 127.0.0.1
+  goto :eof
+)
+echo Python was not found. You can still open index.html directly in Chrome/Edge because V5 has no external modules.
+pause

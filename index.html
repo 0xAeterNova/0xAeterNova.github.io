@@ -1,103 +1,84 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#0a0908" />
-  <meta name="description" content="0xAeterNova — The Impossible Machine. An immersive 3D portfolio for robotics, AI and cybersecurity." />
-  <title>0xAeterNova // The Impossible Machine</title>
-  <link rel="icon" href="assets/ui/favicon.svg" />
-  <link rel="stylesheet" href="css/app.css" />
-  <script defer src="js/bootstrap.js"></script>
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js",
-      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/jsm/"
-    }
-  }
-  </script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#07070b"/>
+<title>0xAeterNova // Interface Zero</title>
+<meta name="description" content="0xAeterNova — Robotics, AI, embedded systems and cybersecurity portfolio."/>
+<link rel="stylesheet" href="css/site.css"/>
 </head>
 <body>
-  <canvas id="webgl" aria-hidden="true"></canvas>
-  <div class="chromatic-veil" aria-hidden="true"></div>
-  <div class="film" aria-hidden="true"></div>
-  <div class="edge-shade" aria-hidden="true"></div>
+<canvas id="world" aria-hidden="true"></canvas>
+<div id="grain" aria-hidden="true"></div>
+<div id="cursor" aria-hidden="true"><i></i></div>
 
-  <div id="boot" class="boot">
-    <div class="boot-symbol" aria-hidden="true"><i></i><i></i><i></i><b>0x</b></div>
-    <div class="boot-copy">
-      <span class="boot-kicker">AETER/NOVA SYSTEM 04</span>
-      <h1>THE IMPOSSIBLE<br>MACHINE</h1>
-      <p>A portfolio that reconfigures itself around the work.</p>
-      <div class="boot-actions">
-        <button id="enter-sound" class="enter primary" type="button">ENTER WITH SOUND</button>
-        <button id="enter-silent" class="enter" type="button">ENTER SILENT</button>
-      </div>
-      <small>Headphones recommended · sound can be changed anytime</small>
-      <div id="boot-warning" class="boot-warning" hidden></div>
+<section id="boot" class="boot">
+  <div class="boot-mark" aria-hidden="true"><span>0x</span><b></b><b></b><b></b></div>
+  <div class="boot-copy">
+    <p class="micro">AETER/NOVA · INTERFACE ZERO · BUILD 05</p>
+    <h1>ENTER THE<br/><em>WORKSPACE.</em></h1>
+    <p class="boot-lede">A spatial portfolio for robotics, artificial intelligence, embedded systems and low-level security. The world is rendered locally — no CDN is required.</p>
+    <div class="boot-actions">
+      <button id="enter-sound" class="primary">ENTER WITH SOUND <span>↗</span></button>
+      <button id="enter-silent" class="ghost">ENTER SILENT</button>
     </div>
+    <div class="boot-audio"><span class="pulse-dot"></span> Original soundtrack included · headphones recommended</div>
   </div>
+  <div class="boot-side"><span>BUILD</span><span>THINK</span><span>BREAK</span><span>EVOLVE</span></div>
+</section>
 
-  <div id="transition" class="transition" aria-hidden="true">
-    <div class="transition-word" id="transition-word">RECONFIGURING</div>
-    <div class="blade b1"></div><div class="blade b2"></div><div class="blade b3"></div>
-  </div>
-
-  <header class="topbar" id="topbar">
-    <button class="brand magnetic" type="button" data-route="home" aria-label="Home">
-      <span class="brand-glyph">0x</span>
-      <span class="brand-copy"><b>AETER/NOVA</b><small>IMPOSSIBLE MACHINE // V4</small></span>
-    </button>
-    <div class="top-controls">
-      <button class="micro-btn magnetic" id="tour-btn" type="button">AUTO PILOT</button>
-      <button class="micro-btn magnetic" id="explode-btn" type="button">EXPLODE X</button>
-      <button class="micro-btn magnetic" id="map-btn" type="button">SYSTEM MAP</button>
-      <button class="micro-btn magnetic" id="command-btn" type="button">SEARCH /</button>
-      <div class="sound-cluster">
-        <button class="round-btn magnetic" id="sound-btn" type="button" aria-label="Toggle audio">♪</button>
-        <input id="volume" class="volume" type="range" min="0" max="100" value="48" aria-label="Audio volume" />
+<div id="app" class="app is-hidden">
+  <header class="topbar ui">
+    <button class="brand" data-route="home" aria-label="Go home"><span class="brand-mark">0x</span><span><strong>AETER/NOVA</strong><small>INTERFACE ZERO</small></span></button>
+    <div class="system-actions">
+      <button id="atlas-open" class="sysbtn"><span class="kbd">M</span> NEXUS</button>
+      <button id="search-open" class="sysbtn"><span class="kbd">/</span> SIGNAL</button>
+      <div class="audio-control">
+        <button id="mute" class="sound-btn" aria-label="Toggle sound">♪</button>
+        <canvas id="spectrum" width="84" height="24"></canvas>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.68" aria-label="Volume"/>
       </div>
     </div>
   </header>
 
-  <nav class="phase-dial" id="phase-dial" aria-label="Portfolio sections"></nav>
-
-  <aside id="lens" class="lens lens-left" aria-live="polite">
-    <div class="lens-index"><span id="lens-num">00</span><i></i><span id="lens-code">ORIGIN</span></div>
-    <div id="lens-content" class="lens-content"></div>
-    <div class="lens-foot">
-      <span id="lens-hint">DRAG SPACE · SCROLL DEPTH · CLICK ENERGY</span>
-      <span id="lens-status">SYSTEM STABLE</span>
-    </div>
+  <aside id="lens" class="lens ui lens-left" aria-live="polite">
+    <div class="lens-top"><span id="route-index">00</span><span id="route-label">ORIGIN</span><i></i></div>
+    <div id="lens-content"></div>
   </aside>
 
-  <div class="telemetry" id="telemetry" aria-hidden="true">
-    <span>PHASE</span><b id="telemetry-phase">0.000</b><span>FIELD</span><b id="telemetry-field">AETER</b>
+  <nav id="route-rail" class="route-rail ui" aria-label="Portfolio sections">
+    <button data-route="home"><i></i><span>ORIGIN</span><small>00</small></button>
+    <button data-route="projects"><i></i><span>WORK</span><small>01</small></button>
+    <button data-route="cyber"><i></i><span>BREACH</span><small>02</small></button>
+    <button data-route="about"><i></i><span>IDENTITY</span><small>03</small></button>
+    <button data-route="contact"><i></i><span>UPLINK</span><small>04</small></button>
+  </nav>
+
+  <div class="telemetry ui"><span id="field-readout">FIELD / ORIGIN</span><span>DRAG ORBIT · WHEEL DEPTH · CLICK SIGNAL</span></div>
+  <div id="hover-hint" class="hover-hint ui"></div>
+</div>
+
+<section id="atlas" class="overlay atlas" hidden>
+  <div class="overlay-head ui"><div><span class="micro">NEXUS / SPATIAL TOPOLOGY</span><h2>Everything is connected.</h2></div><button class="close" data-close="atlas">×</button></div>
+  <div id="atlas-labels" class="atlas-labels"></div>
+  <div class="atlas-instruction ui">Drag the field · select any living node · <b>ESC</b> to return</div>
+</section>
+
+<section id="signal" class="overlay signal" hidden>
+  <div class="signal-shell ui">
+    <div class="signal-head"><span class="micro">SIGNAL ACQUISITION / COMMAND FIELD</span><button class="close" data-close="signal">×</button></div>
+    <label for="signal-input">What are you looking for?</label>
+    <input id="signal-input" autocomplete="off" spellcheck="false" placeholder="Try: RuVigil, reverse engineering, AI, contact…"/>
+    <div id="signal-status">TYPE TO COLLAPSE THE FIELD AROUND A DESTINATION</div>
+    <div id="signal-results" class="signal-results"></div>
   </div>
+</section>
 
-  <div class="cursor" id="cursor"><i></i><b></b></div>
-
-  <div id="map" class="overlay" role="dialog" aria-modal="true" aria-label="System map">
-    <div class="map-shell">
-      <div class="overlay-head"><span>SYSTEM TOPOLOGY</span><button class="close-btn" type="button" data-close>×</button></div>
-      <div class="map-core" id="map-core"></div>
-      <div class="map-note">Each node is one physical state of the same machine.</div>
-    </div>
-  </div>
-
-  <div id="command" class="overlay" role="dialog" aria-modal="true" aria-label="Search portfolio">
-    <div class="command-shell">
-      <div class="overlay-head"><span>FIND ANYTHING</span><button class="close-btn" type="button" data-close>×</button></div>
-      <input id="command-input" class="command-input" autocomplete="off" placeholder="Project, skill, realm…" />
-      <div id="command-results" class="command-results"></div>
-    </div>
-  </div>
-
-  <div id="engine-warning" class="engine-warning" hidden><span>3D engine unavailable.</span><button type="button" onclick="this.parentElement.hidden=true">×</button></div>
-  <div id="toast" class="toast"></div>
-  <div class="mobile-tip">SWIPE SPACE · TAP NODES · USE MENU</div>
-
-  <script type="module" src="js/app.js"></script>
+<div id="engine-error" class="engine-error" hidden></div>
+<audio id="ost" preload="auto" loop><source src="assets/audio/aeternova-interface-zero.ogg" type="audio/ogg"><source src="assets/audio/aeternova-interface-zero.mp3" type="audio/mpeg"></audio>
+<script src="js/data.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

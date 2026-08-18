@@ -1,44 +1,53 @@
-# 0xAeterNova // The Impossible Machine V4.1
+# 0xAeterNova // Interface Zero V5
 
-## Windows — recommended
+This version is a full rebuild.
 
-Do **not** double-click `index.html`.
+## Why V5 exists
 
-Double-click:
+V4/V4.1 could fall back to a flat UI when the Three.js CDN did not load. V5 removes that architecture completely.
 
-`START-PORTFOLIO.bat`
+- No Three.js CDN.
+- No npm runtime dependency.
+- No React.
+- No GSAP.
+- No external post-processing library.
+- No external audio stream.
 
-It starts a local web server first and then opens:
+The 3D renderer in `js/engine.js` is a self-contained WebGL2 engine included with the site. It contains its own geometry generators, camera/matrix code, object picking, animated particles, background shaders, render targets, bright pass, multi-pass blur and final bloom/composite pass.
 
-`http://127.0.0.1:8080/`
+## Run it
 
-The server is required because the portfolio uses JavaScript modules and a WebGL 3D engine.
+### Windows
+Double-click `START-PORTFOLIO.bat`.
 
-## What V4.1 fixes
+Then use:
 
-- Entry buttons are attached before the 3D engine starts.
-- A Three.js/CDN/WebGL failure can no longer freeze the opening screen.
-- Audio failure can no longer block entry.
-- The UI continues in a safe animated visual mode if the 3D libraries cannot load.
-- The 3D loader tries the primary Three.js source and then a second mirror.
-- If `index.html` is opened directly as a local file, the boot screen now explains the problem instead of appearing dead.
-- `START-PORTFOLIO.bat` starts the server before opening the browser, fixing the old startup race.
+`http://127.0.0.1:8080`
+
+### Linux/macOS
+Run `./start-portfolio.sh` and open the same address.
+
+Because V5 uses classic local scripts rather than ES-module imports, modern Chrome/Edge can also open `index.html` directly. A local server is still recommended because it matches GitHub Pages deployment.
 
 ## Controls
 
-- Drag: orbit
-- Mouse wheel: depth
-- X: exploded machine view
-- M: system map
-- /: search
-- F: focus mode
-- R: reset camera
-- 1–5: main sections
+- Drag empty 3D space: orbit the current field.
+- Mouse wheel: camera depth.
+- Click a glowing project / topology node: open it.
+- `M`: enter the 3D Nexus topology.
+- `/`: open Signal Acquisition search.
+- `Esc`: close Nexus/Search.
+- `1`: Origin.
+- `2`: Project Archive.
+- `3`: Cybersecurity.
+- `4`: About / Identity.
+- `5`: Contact.
+- `F`: distraction-free 3D focus mode.
 
-## Edit content
+## Sound
 
-Projects and profile content live in:
+`assets/audio/aeternova-interface-zero.ogg` is an original locally generated stereo soundtrack. It is not a WebAudio drone. The browser audio graph is only used for mastering, filtering during world transitions, visualization and 3D reactivity.
 
-`js/data.js`
+## Diagnostics
 
-Do not edit the 3D engine just to add a normal new project.
+If the 3D canvas ever fails, open `DIAGNOSTICS.html` and send a screenshot of the result. It has no dependencies and directly reports the browser WebGL2/GPU capability.
