@@ -1,19 +1,44 @@
-# Start here
+# 0xAeterNova // The Impossible Machine V4.1
 
-1. Extract the folder.
-2. Double-click `start-local.bat` on Windows, or run `./start-local.sh` on Linux/macOS.
-3. Open `http://localhost:8080` if it does not open automatically.
-4. Choose **ENTER WITH SOUND** for the intended experience. Browser audio requires a user interaction, which is why the site starts with an entry gate.
-5. Use the mouse in empty 3D space to orbit. Use the wheel to move the camera depth.
-6. Press `X` to explode/recompose the active machine.
-7. Open projects from the Archive, map, 3D objects, or search palette.
+## Windows — recommended
 
-## Editing your information
+Do **not** double-click `index.html`.
 
-Almost all portfolio content is in `js/data.js`.
+Double-click:
 
-Do not edit `index.html` every time you add a project. Add the project to the `projects` array instead.
+`START-PORTFOLIO.bat`
 
-## Visual philosophy
+It starts a local web server first and then opens:
 
-The site has one persistent mechanical identity. Every section changes the geometry, palette, fog/exposure, sound and motion while keeping the same machine spine. This is what makes the experience coherent without forcing every section into one dark-blue theme.
+`http://127.0.0.1:8080/`
+
+The server is required because the portfolio uses JavaScript modules and a WebGL 3D engine.
+
+## What V4.1 fixes
+
+- Entry buttons are attached before the 3D engine starts.
+- A Three.js/CDN/WebGL failure can no longer freeze the opening screen.
+- Audio failure can no longer block entry.
+- The UI continues in a safe animated visual mode if the 3D libraries cannot load.
+- The 3D loader tries the primary Three.js source and then a second mirror.
+- If `index.html` is opened directly as a local file, the boot screen now explains the problem instead of appearing dead.
+- `START-PORTFOLIO.bat` starts the server before opening the browser, fixing the old startup race.
+
+## Controls
+
+- Drag: orbit
+- Mouse wheel: depth
+- X: exploded machine view
+- M: system map
+- /: search
+- F: focus mode
+- R: reset camera
+- 1–5: main sections
+
+## Edit content
+
+Projects and profile content live in:
+
+`js/data.js`
+
+Do not edit the 3D engine just to add a normal new project.

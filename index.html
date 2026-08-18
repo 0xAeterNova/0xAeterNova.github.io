@@ -8,6 +8,7 @@
   <title>0xAeterNova // The Impossible Machine</title>
   <link rel="icon" href="assets/ui/favicon.svg" />
   <link rel="stylesheet" href="css/app.css" />
+  <script defer src="js/bootstrap.js"></script>
   <script type="importmap">
   {
     "imports": {
@@ -34,6 +35,7 @@
         <button id="enter-silent" class="enter" type="button">ENTER SILENT</button>
       </div>
       <small>Headphones recommended · sound can be changed anytime</small>
+      <div id="boot-warning" class="boot-warning" hidden></div>
     </div>
   </div>
 
@@ -92,6 +94,7 @@
     </div>
   </div>
 
+  <div id="engine-warning" class="engine-warning" hidden><span>3D engine unavailable.</span><button type="button" onclick="this.parentElement.hidden=true">×</button></div>
   <div id="toast" class="toast"></div>
   <div class="mobile-tip">SWIPE SPACE · TAP NODES · USE MENU</div>
 

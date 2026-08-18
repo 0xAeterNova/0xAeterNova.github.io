@@ -1,10 +1,50 @@
-import { ImpossibleMachine } from './world.js';
 import { SpatialAudio } from './audio.js';
 import { profile, projects, skills, realms, commandEntries } from './data.js';
 
 const $=(q,p=document)=>p.querySelector(q), $$=(q,p=document)=>[...p.querySelectorAll(q)];
 const root=document.documentElement, body=document.body;
-const world=new ImpossibleMachine($('#webgl'));
+class SafeWorld {
+  constructor(canvas){
+    this.webglCanvas=canvas; this.canvas=document.createElement('canvas'); this.canvas.className='safe-canvas'; canvas.parentNode.insertBefore(this.canvas,canvas); this.route='home'; this.audioLevel=0; this.exploded=false; this.ctx=null; this.raf=0; this.pointer={x:0,y:0};
+    try{this.ctx=canvas.getContext('2d',{alpha:false});}catch{}
+    this.bind(); this.resize(); this.loop();
+  }
+  bind(){
+    addEventListener('resize',()=>this.resize());
+    addEventListener('pointermove',e=>{this.pointer.x=e.clientX/Math.max(1,innerWidth);this.pointer.y=e.clientY/Math.max(1,innerHeight);});
+  }
+  resize(){if(!this.ctx)return;const d=Math.min(devicePixelRatio||1,1.5);this.canvas.width=Math.max(1,Math.floor(innerWidth*d));this.canvas.height=Math.max(1,Math.floor(innerHeight*d));this.canvas.style.width='100%';this.canvas.style.height='100%';this.dpr=d;}
+  colors(){const c={home:['#ff744f','#8159ff','#fff0ad'],projects:['#ff2ea6','#19e6ff','#fff4cb'],cyber:['#faff00','#ff5a1f','#10100f'],about:['#ffd87a','#7d52ff','#a9ffe6'],contact:['#88ffd5','#ff9b78','#e6e0ff']};return c[this.route.startsWith('project/')?'projects':this.route]||c.home;}
+  loop(){if(!this.ctx)return;const x=this.ctx,w=this.canvas.width,h=this.canvas.height,t=performance.now()*.001,[a,b,c]=this.colors();x.fillStyle='#080706';x.fillRect(0,0,w,h);const grd=x.createRadialGradient(w*(.25+this.pointer.x*.2),h*(.45+this.pointer.y*.1),0,w*.5,h*.5,Math.max(w,h)*.7);grd.addColorStop(0,a+'44');grd.addColorStop(.42,b+'22');grd.addColorStop(1,'#08070600');x.fillStyle=grd;x.fillRect(0,0,w,h);x.save();x.translate(w*.5,h*.5);for(let i=0;i<18;i++){const r=(Math.min(w,h)*(.08+i*.022))*(1+.025*Math.sin(t*(.4+i*.03)+i));x.strokeStyle=(i%3===0?c:i%2?a:b)+(i<7?'88':'33');x.lineWidth=Math.max(1,this.dpr);x.beginPath();x.ellipse(0,0,r,r*(.58+.18*Math.sin(i*.7+t*.14)),t*.08+i*.17,0,Math.PI*2);x.stroke();}x.rotate(t*.12);x.strokeStyle=c+'aa';x.lineWidth=2*this.dpr;x.beginPath();for(let i=0;i<9;i++){const q=i/9*Math.PI*2,rr=Math.min(w,h)*(.08+(i%3)*.025);const xx=Math.cos(q)*rr,yy=Math.sin(q)*rr;if(i===0)x.moveTo(xx,yy);else x.lineTo(xx,yy);}x.closePath();x.stroke();x.restore();this.raf=requestAnimationFrame(()=>this.loop());}
+  setRoute(route){this.route=route;}
+  setAudioLevel(v){this.audioLevel=v||0;}
+  toggleExplode(){this.exploded=!this.exploded;return this.exploded;}
+  reset(){}
+}
+let world=new SafeWorld($('#webgl'));
+let worldMode='safe';
+async function initWorld(){
+  const status=$('#lens-status'); if(status)status.textContent='3D ENGINE LOADING';
+  const attempts=[['PRIMARY','./world.js'],['MIRROR','./world-alt.js']];
+  for(const [name,url] of attempts){
+    try{
+      const mod=await import(url);
+      const live=new mod.ImpossibleMachine($('#webgl'));
+      if(world?.raf) cancelAnimationFrame(world.raf);
+      if(world?.canvas?.classList?.contains('safe-canvas')) world.canvas.remove();
+      world=live; worldMode='3d'; world.setRoute(current,true);
+      if(status)status.textContent=`3D ONLINE / ${name}`;
+      document.body.classList.remove('engine-safe');
+      window.dispatchEvent(new CustomEvent('aeter-engine-ready',{detail:{mode:'3d',source:name}}));
+      return true;
+    }catch(err){console.warn(`[AeterNova] ${name} 3D engine failed`,err);}
+  }
+  document.body.classList.add('engine-safe');
+  if(status)status.textContent='SAFE VISUAL MODE';
+  const warn=document.getElementById('engine-warning');if(warn){warn.hidden=false;warn.querySelector('span').textContent='3D libraries could not load. The portfolio remains usable; run START-PORTFOLIO.bat or check your network to restore WebGL.';}
+  window.dispatchEvent(new CustomEvent('aeter-engine-ready',{detail:{mode:'safe'}}));
+  return false;
+}
 const audio=new SpatialAudio();
 let current='home', commandIndex=0, tourTimer=null, tourOn=false;
 
@@ -62,7 +102,14 @@ function toggleCommand(open=true){$('#command').classList.toggle('open',open);$(
 $('#command-input').addEventListener('input',e=>filterCommands(e.target.value));$('#command-input').addEventListener('keydown',e=>{const items=$$('.command-item');if((e.key==='ArrowDown'||e.key==='ArrowUp')&&items.length){e.preventDefault();commandIndex=(commandIndex+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;items.forEach((x,i)=>x.classList.toggle('active',i===commandIndex));items[commandIndex]?.scrollIntoView({block:'nearest'});}if(e.key==='Enter'&&items[commandIndex])navigate(items[commandIndex].dataset.cmd);});
 
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),1800);}
-async function enter(withSound){if(withSound){await audio.start(true);$('#sound-btn').textContent='♫';toast('Spatial audio online');}else{await audio.start(false);$('#sound-btn').textContent='♪';}$('#boot').classList.add('done');navigate(hashRoute(),{fromHash:true,instant:true});}
+async function enter(withSound){
+  $('#boot').classList.add('done');
+  try{
+    if(withSound){await audio.start(true);$('#sound-btn').textContent='♫';toast('Spatial audio online');}
+    else{await audio.start(false);$('#sound-btn').textContent='♪';}
+  }catch(err){console.warn('[AeterNova] Audio unavailable',err);$('#sound-btn').textContent='♪';toast('Audio unavailable — visual system still online');}
+  navigate(hashRoute(),{fromHash:true,instant:true});
+}
 $('#enter-sound').addEventListener('click',()=>enter(true));$('#enter-silent').addEventListener('click',()=>enter(false));
 $('#sound-btn').addEventListener('click',async()=>{const on=await audio.toggle();$('#sound-btn').textContent=on?'♫':'♪';toast(on?'Spatial audio online':'Audio muted');});$('#volume').addEventListener('input',e=>{audio.setVolume(Number(e.target.value)/100);});
 function startTour(){stopTour();tourOn=true;$('#tour-btn').textContent='STOP PILOT';const seq=['home','projects','project/ruvigil','project/phantom','project/elif-linux','cyber','about','contact'];let i=Math.max(0,seq.indexOf(current));const next=()=>{if(!tourOn)return;i=(i+1)%seq.length;navigate(seq[i]);tourTimer=setTimeout(next,7200);};tourTimer=setTimeout(next,1600);toast('Auto pilot engaged');}
@@ -76,3 +123,8 @@ addEventListener('keydown',e=>{if(e.target.matches('input,textarea')){if(e.key==
 function audioReactive(){world.setAudioLevel(audio.getLevel());requestAnimationFrame(audioReactive)}
 audioReactive();
 buildNav();cursor();setPalette('home');render('home');updateNav('home');
+window.AeterNovaEnter=enter;
+window.__AETER_APP_READY__=true;
+window.dispatchEvent(new Event('aeter-app-ready'));
+if(window.__AETER_BOOT_INTENT__!==undefined){const intent=!!window.__AETER_BOOT_INTENT__;delete window.__AETER_BOOT_INTENT__;enter(intent);}
+initWorld();

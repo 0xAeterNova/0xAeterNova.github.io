@@ -52,3 +52,11 @@ body{overscroll-behavior:none;cursor:none} button,a,input{font:inherit} button,a
 }
 @media(max-height:720px) and (min-width:721px){.lens{top:86px;bottom:52px}.lens-content{padding:20px}.lens h1{font-size:clamp(46px,6vw,78px)}.lead{margin:17px 0}.topbar{top:14px}.phase-dial{transform:translateY(-47%)}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+
+/* V4.1 resilient startup */
+.boot.starting .enter{opacity:.58;pointer-events:none}.boot.starting .boot-symbol{filter:saturate(1.4);transform:scale(.985)}
+.boot-warning{margin-top:18px;max-width:620px;padding:12px 14px;border:1px solid rgba(255,138,102,.42);border-radius:12px;background:rgba(255,116,79,.08);color:#ffc4b2;font:750 9px/1.65 ui-monospace,monospace;letter-spacing:.07em}
+.engine-warning{position:fixed;left:50%;bottom:24px;z-index:750;transform:translateX(-50%);width:min(760px,calc(100vw - 32px));padding:11px 12px 11px 15px;border:1px solid color-mix(in srgb,var(--a) 45%,rgba(255,255,255,.18));border-radius:14px;background:rgba(8,8,9,.88);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 18px 70px rgba(0,0,0,.45);font:750 8px/1.55 ui-monospace,monospace;letter-spacing:.08em;color:rgba(255,255,255,.76)}
+.engine-warning[hidden]{display:none}.engine-warning button{flex:0 0 auto;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:transparent;color:#fff}
+.engine-safe #webgl{filter:saturate(1.08) contrast(1.04)}
+.safe-canvas{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;background:#090807;pointer-events:none}
