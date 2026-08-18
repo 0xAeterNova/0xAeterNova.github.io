@@ -21,7 +21,7 @@
       <i></i><i></i><i></i><i></i><b>0x</b><em>TX</em>
     </div>
     <div class="boot-copy">
-      <span class="boot-kicker">AETER/NOVA // TRANSMISSION CORE 04.2</span>
+      <span class="boot-kicker">AETER/NOVA // TRANSMISSION CORE 04.3</span>
       <h1>THE<br><span>TRANSMISSION</span><br>MACHINE</h1>
       <p>A portfolio transmitted as a living machine — every project changes the signal, geometry and atmosphere.</p>
       <div class="boot-actions">
@@ -43,11 +43,11 @@
   <header class="topbar" id="topbar">
     <button class="brand magnetic" type="button" data-route="home" aria-label="Home">
       <span class="brand-glyph">0x</span>
-      <span class="brand-copy"><b>AETER/NOVA</b><small>TRANSMISSION MACHINE // V4.2</small></span>
+      <span class="brand-copy"><b>AETER/NOVA</b><small>TRANSMISSION MACHINE // V4.3</small></span>
     </button>
     <div class="top-controls">
       <button class="micro-btn magnetic" id="tour-btn" type="button">AUTO TRANSMIT</button>
-      <button class="micro-btn magnetic" id="explode-btn" type="button">EXPLODE X</button>
+      <button class="micro-btn magnetic" id="explode-btn" type="button" title="Disassemble the active 3D machine into inspectable layers (X)" aria-label="Disassemble the active machine">DISASSEMBLE X</button>
       <button class="micro-btn magnetic" id="map-btn" type="button">SIGNAL MAP</button>
       <button class="micro-btn magnetic" id="command-btn" type="button">SEARCH /</button>
       <div class="sound-cluster">
@@ -72,28 +72,36 @@
     <span>PHASE</span><b id="telemetry-phase">0.000</b><span>FIELD</span><b id="telemetry-field">AETER</b>
   </div>
 
-  <div class="cursor" id="cursor"><i></i><b></b></div>
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <i class="cursor-core"></i><b class="cursor-ring"></b><span class="cursor-orbit o1"></span><span class="cursor-orbit o2"></span><em id="cursor-lock">SCAN</em>
+  </div>
+  <div id="cursor-trail" class="cursor-trail" aria-hidden="true"></div>
 
   <section id="map" class="overlay map-overlay" aria-label="3D signal map" hidden>
     <div class="map-console">
-      <div class="map-title"><small>TRANSMISSION LATTICE</small><h2>Signal Map</h2><p>These are not pages. They are machine states connected by work, skills and intent.</p></div>
-      <div class="map-legend"><span><i class="dot core"></i>Core realm</span><span><i class="dot project"></i>Project signal</span></div>
-      <button class="map-close magnetic" type="button" data-close="map">RETURN TO SIGNAL ×</button>
+      <div class="map-title"><small>TRANSMISSION LATTICE // LIVE</small><h2>Signal Atlas</h2><p>Drag the void to orbit the lattice. Hover a node to isolate its path. Click to transmit.</p></div>
+      <div class="map-legend"><span><i class="dot core"></i>Core state</span><span><i class="dot project"></i>Project state</span><span><i class="dot craft"></i>Transit craft</span></div>
+      <div class="map-lock"><small>FOCUS LOCK</small><b id="map-focus-name">NO TARGET</b><span id="map-focus-meta">MOVE THROUGH THE FIELD</span></div>
+      <button class="map-close magnetic" type="button" data-close="map">EXIT ATLAS ×</button>
     </div>
+    <div class="map-reticle" aria-hidden="true"><i></i><i></i><b></b><span></span></div>
     <div id="map-labels" class="map-labels"></div>
-    <div class="map-coordinates"><span>X / SIGNAL</span><b id="map-readout">00.000 // 00.000</b></div>
+    <div class="map-coordinates"><span>FIELD COORDINATES</span><b id="map-readout">00.000 // 00.000</b><small>AETER/NOVA NAVCOM</small></div>
   </section>
 
   <section id="command" class="overlay search-overlay" aria-label="Search portfolio" hidden>
     <div class="search-console">
-      <div class="search-head"><div><small>SIGNAL ACQUISITION</small><b>Find anything</b></div><button class="close-btn" type="button" data-close="search">×</button></div>
-      <div class="search-input-wrap"><span>/</span><input id="command-input" class="command-input" autocomplete="off" placeholder="ruvigil, reverse, ai, linux, contact…" /></div>
+      <div class="search-head"><div><small>SPECTRAL SEARCH ARRAY</small><b>Acquire a signal</b></div><button class="close-btn" type="button" data-close="search">×</button></div>
+      <div class="search-input-wrap"><span>/</span><input id="command-input" class="command-input" autocomplete="off" placeholder="type a project, skill, realm or technology…" /></div>
+      <div class="search-spectrum" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <div id="command-results" class="command-results"></div>
-      <div class="search-foot"><span>↑ ↓ SELECT</span><span>ENTER TRANSMIT</span><span>ESC RETURN</span></div>
+      <div class="search-foot"><span>↑ ↓ TUNE</span><span>ENTER TRANSMIT</span><span>ESC RELEASE</span></div>
     </div>
+    <div class="search-orbit" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
   </section>
 
   <div id="engine-error" class="engine-error" hidden></div>
+  <div id="disassembly-hud" class="disassembly-hud" hidden><small>X-MODE</small><b>DISASSEMBLED</b><span>Drag to inspect the machine layers · press X to reassemble</span></div>
   <div id="toast" class="toast"></div>
   <div class="mobile-tip">SWIPE SPACE · TAP SIGNALS · MENU ABOVE</div>
 

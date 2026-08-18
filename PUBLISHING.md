@@ -20,4 +20,4 @@ Your site will be served at:
 
 `https://0xaeternova.github.io/`
 
-V4.2 is static GitHub Pages compatible. The 3D engine, soundtrack and artwork are all included locally, so GitHub Pages does not need a build process or third-party runtime CDN.
+V4.3 is static GitHub Pages compatible. The 3D engine, soundtrack and artwork are all included locally, so GitHub Pages does not need a build process or third-party runtime CDN.
