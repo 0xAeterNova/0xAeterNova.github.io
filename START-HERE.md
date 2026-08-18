@@ -1,53 +1,45 @@
-# 0xAeterNova // Interface Zero V5
+# 0xAeterNova — Transmission Machine V4.2
 
-This version is a full rebuild.
+This build returns to the V4 visual direction: cinematic transmission blades, an asymmetric information lens, machine-state reconfiguration and color-changing 3D realms.
 
-## Why V5 exists
+The important difference is that the 3D engine is now completely local. It does **not** download Three.js or any runtime library from a CDN.
 
-V4/V4.1 could fall back to a flat UI when the Three.js CDN did not load. V5 removes that architecture completely.
+## Run it on Windows
 
-- No Three.js CDN.
-- No npm runtime dependency.
-- No React.
-- No GSAP.
-- No external post-processing library.
-- No external audio stream.
+1. Extract the ZIP into its own folder.
+2. Double-click `START-PORTFOLIO.bat`.
+3. It opens `http://127.0.0.1:8080/` automatically.
+4. Choose **ENTER WITH SOUND** or **ENTER SILENT**.
 
-The 3D renderer in `js/engine.js` is a self-contained WebGL2 engine included with the site. It contains its own geometry generators, camera/matrix code, object picking, animated particles, background shaders, render targets, bright pass, multi-pass blur and final bloom/composite pass.
-
-## Run it
-
-### Windows
-Double-click `START-PORTFOLIO.bat`.
-
-Then use:
-
-`http://127.0.0.1:8080`
-
-### Linux/macOS
-Run `./start-portfolio.sh` and open the same address.
-
-Because V5 uses classic local scripts rather than ES-module imports, modern Chrome/Edge can also open `index.html` directly. A local server is still recommended because it matches GitHub Pages deployment.
+Do not double-click `index.html` directly. Browser module security may block JavaScript when a site is opened through `file://`.
 
 ## Controls
 
-- Drag empty 3D space: orbit the current field.
-- Mouse wheel: camera depth.
-- Click a glowing project / topology node: open it.
-- `M`: enter the 3D Nexus topology.
-- `/`: open Signal Acquisition search.
-- `Esc`: close Nexus/Search.
-- `1`: Origin.
-- `2`: Project Archive.
-- `3`: Cybersecurity.
-- `4`: About / Identity.
-- `5`: Contact.
-- `F`: distraction-free 3D focus mode.
+- Drag empty 3D space — orbit the camera
+- Mouse wheel — camera depth
+- Click a 3D project signal — open it
+- `M` — 3D Signal Map
+- `/` — Signal Acquisition search
+- `R` — recenter camera
+- `F` — cinematic focus mode
+- `1`–`5` — Origin / Archive / Breach / Orbit / Uplink
+- **EXPLODE X** — separate / reassemble machine geometry
+- **AUTO TRANSMIT** — automatic portfolio tour
 
-## Sound
+## If 3D does not work
 
-`assets/audio/aeternova-interface-zero.ogg` is an original locally generated stereo soundtrack. It is not a WebAudio drone. The browser audio graph is only used for mastering, filtering during world transitions, visualization and 3D reactivity.
+Open `DIAGNOSTICS.html` through the same local server:
 
-## Diagnostics
+`http://127.0.0.1:8080/DIAGNOSTICS.html`
 
-If the 3D canvas ever fails, open `DIAGNOSTICS.html` and send a screenshot of the result. It has no dependencies and directly reports the browser WebGL2/GPU capability.
+It checks WebGL2 and shows the GPU renderer. V4.2 has no CDN dependency, so a failure here is normally browser/GPU hardware acceleration rather than a missing library.
+
+## Main editable files
+
+- `js/data.js` — profile, projects, skills, links
+- `js/app.js` — interface, transitions, map, search, soundtrack behavior
+- `js/engine.js` — local 3D/WebGL2 engine and realm geometry
+- `css/app.css` — complete visual design
+- `assets/projects/` — project artwork
+- `assets/profile/` — GitHub identity artwork
+- `assets/audio/` — soundtrack

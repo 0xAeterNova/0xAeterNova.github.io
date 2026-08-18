@@ -1,37 +1,23 @@
-# Publish to GitHub Pages
+# Publish on GitHub Pages
 
-## 1. Repository
-
-Create a public repository named exactly:
+Create a repository named exactly:
 
 `0xAeterNova.github.io`
 
-Keep your existing `0xAeterNova/0xAeterNova` repository for your GitHub profile README.
+Upload **the contents of this folder** to the repository root. `index.html` must be directly at the root, not inside another folder.
 
-## 2. Upload
+Then open:
 
-Upload the **contents** of this V5 folder to the root of `0xAeterNova.github.io`.
+**Repository → Settings → Pages**
 
-Correct:
+Choose:
 
-- `index.html`
-- `css/`
-- `js/`
-- `assets/`
-- `.nojekyll`
+- Source: **Deploy from a branch**
+- Branch: **main**
+- Folder: **/(root)**
 
-Do not upload an extra outer folder around those files.
+Your site will be served at:
 
-## 3. GitHub Pages
+`https://0xaeternova.github.io/`
 
-Repository → Settings → Pages → Build and deployment:
-
-- Source: Deploy from a branch
-- Branch: `main`
-- Folder: `/(root)`
-
-The site will be served from `https://0xaeternova.github.io/`.
-
-## 4. Why V5 is safer to deploy
-
-All runtime code and the soundtrack are stored in the repository. WebGL no longer depends on a CDN being reachable from the visitor's network.
+V4.2 is static GitHub Pages compatible. The 3D engine, soundtrack and artwork are all included locally, so GitHub Pages does not need a build process or third-party runtime CDN.

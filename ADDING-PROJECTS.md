@@ -1,23 +1,17 @@
 # Adding a project
 
-Most portfolio content lives in `js/data.js`.
+Open `js/data.js` and add another object inside `projects`.
 
-Add another object inside `AETER_DATA.projects` using a unique `slug`, project name, description, stack, repository URL and palette.
+Use a unique `slug`, for example `aeterbot`, and put its artwork in `assets/projects/`.
 
-The Project Archive list, search system and data-driven project detail screen are generated from that file.
+The interface automatically adds the project to:
 
-For the project artwork, create:
+- Archive
+- search
+- project detail view
+- 3D Archive constellation
+- 3D Signal Map
 
-`assets/projects/YOUR-SLUG.svg`
+Projects with `realm: 'ruvigil'`, `realm: 'phantom'`, or `realm: 'elif'` use the three custom flagship worlds. Any other realm receives a generic spatial artifact automatically.
 
-For a major project that deserves a custom 3D environment, add a scene branch inside `buildProject()` in `js/engine.js`. Existing visual languages are:
-
-- `rf` — sensing / distributed hardware.
-- `neural` — AI / computer vision / neural networks.
-- `forge` — Linux / systems / low-level tooling.
-
-You can also invent a new scene type without changing the UI system.
-
-## Important
-
-The project object is the single source of truth for the visible text. Do not duplicate the project description across multiple HTML pages.
+For a new flagship project with its own unique 3D world, add a new builder in `js/engine.js` and route it from `buildProject()`.
