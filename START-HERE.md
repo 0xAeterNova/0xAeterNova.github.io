@@ -1,74 +1,48 @@
-# 0xAeterNova — Transmission Machine V4.3
+# AeterNova Transmission Machine V4.4 — DEEP SIGNAL
 
-V4.3 preserves the transmission-machine look and music from V4.2 while extending the environment, interactions and performance system.
+This version keeps the V4 transmission-machine art direction and the soundtrack you approved, while substantially changing the background, UFO system, cursor, Engineering X-Ray, Signal Atlas, Spectral Search, About, and performance engine.
 
-The 3D engine is completely local. It does **not** download Three.js or any runtime library from a CDN.
+## 1. Test locally
 
-## Run it on Windows
+On Windows, double-click `START-PORTFOLIO.bat` and use the browser page it opens.
 
-1. Extract the ZIP into its own folder.
-2. Double-click `START-PORTFOLIO.bat`.
-3. It opens `http://127.0.0.1:8080/` automatically.
-4. Choose **ENTER WITH SOUND** or **ENTER SILENT**.
+You should see a small build marker reading **BUILD 4.4 · DEEP SIGNAL**. If you do not see that marker, you are not running V4.4.
 
-Do not double-click `index.html` directly. Browser module security may block JavaScript when a site is opened through `file://`.
+## 2. Controls
 
-## Controls
+- Drag: orbit camera
+- Mouse wheel: camera depth
+- `X`: Engineering X-Ray / reassemble
+- `M`: Signal Atlas
+- `/`: Spectral Search
+- `R`: reset camera
+- Autopilot button: cinematic guided sequence
 
-- Drag empty 3D space — orbit the camera
-- Mouse wheel — camera depth
-- Click a 3D project signal — open it
-- `M` — open the interactive **Signal Atlas**
-- `/` — open **Spectral Search Array**
-- `R` — recenter camera
-- `F` — cinematic focus mode
-- `1`–`5` — Origin / Archive / Breach / Orbit / Uplink
-- `X` or **DISASSEMBLE X** — release the current machine into inspectable 3D layers; drag around it, then press `X` again or click **REASSEMBLE X** to rebuild it
-- **AUTO TRANSMIT** — automatic cinematic portfolio tour
+## 3. What Engineering X-Ray does
 
-## What changed in V4.3
+It is an inspection mode, not an explosion. The active machine separates into architectural layers, the camera pulls back, and the pieces gain controlled rotational drift. Press X again to reassemble.
 
-The background now contains a deeper procedural skyline, transmission lanes, aurora/nebula fields, reactive horizon geometry and themed UFO fleets. UFO colors inherit the active realm so they feel like part of the world instead of pasted-on props.
 
-The old map has become **Signal Atlas**. Hovering a node focus-locks it in the 3D network, brightens connected transmission paths and suppresses unrelated routes. Labels include collision avoidance so they do not stack on top of each other.
+## Fastest install into your current repository
 
-Search is now **Spectral Search Array**. It keeps the 3D world visible, surfaces only the strongest three matches, and changes the 3D search field as the query changes.
+From the extracted V4.4 folder, you can run `./INSTALL-V4.4.ps1`. It defaults to `C:\Users\Xpl0iS4n\Desktop\0xAeterNova.github.io`, preserves `.git`, copies the runtime files, removes the old About heatmap folder, and immediately prints `git status --short`.
 
-About no longer contains percentage scores or the GitHub Activity Field. Skills are grouped into capability clusters and the original GitHub identity artwork remains intact.
+## 4. Copy V4.4 to GitHub Pages correctly
 
-The cursor is now a scanning instrument with crosshair, orbit rings, SCAN/LOCK state and an inertial trail. It is disabled on touch/mobile layouts.
+Your repository root must directly contain `index.html`, `BUILD-ID.txt`, `css`, `js`, and `assets`.
 
-## Lag / performance behavior
+After copying the **contents** of this V4.4 folder into your repository, open PowerShell in the repository root and run:
 
-V4.3 measures real frame rate while running. When performance drops it automatically:
+`./VERIFY-V4.4.ps1`
 
-- lowers internal render resolution without changing CSS/layout size
-- reduces GPU particle draw count
-- reduces bloom passes
-- reduces expensive UI blur/film effects
+It must report `VERSION: 4.4.0` and `Required V4.4 runtime files: OK`.
 
-When performance recovers, quality rises again automatically.
+Then run `git status --short`. Before your first V4.4 commit, Git should show modified runtime files and the new `BUILD-ID.txt` / verifier unless you have already committed the build.
 
-The renderer also caches WebGL uniform locations instead of resolving them for every object on every frame.
+## 5. If Git says `nothing to commit`
 
-## Music
+First run `Get-Content .\BUILD-ID.txt`. If it does not say `VERSION: 4.4.0`, you copied the build somewhere other than the repository root. If it does say 4.4.0, run `git log -1 --oneline`; V4.4 may already be committed.
 
-The V4.2 soundtrack files are unchanged in V4.3. Their SHA-256 hashes remain the same; only visual reactivity/performance around the audio changed.
+## 6. Browser cache
 
-## If 3D does not work
-
-Open `DIAGNOSTICS.html` through the same local server:
-
-`http://127.0.0.1:8080/DIAGNOSTICS.html`
-
-It checks WebGL2 and shows the GPU renderer. V4.3 has no CDN dependency, so a failure here is normally browser/GPU hardware acceleration rather than a missing library.
-
-## Main editable files
-
-- `js/data.js` — profile, projects, skills, links
-- `js/app.js` — interface, transitions, map, search, soundtrack behavior
-- `js/engine.js` — local 3D/WebGL2 engine and realm geometry
-- `css/app.css` — complete visual design
-- `assets/projects/` — project artwork
-- `assets/profile/` — GitHub identity artwork
-- `assets/audio/` — unchanged soundtrack
+V4.4 cache-busts the main CSS/JS automatically. After GitHub Pages deploys, still use `Ctrl+Shift+R` once or open a private window if you had the old site open for a long time.

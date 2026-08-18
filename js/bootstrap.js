@@ -1,4 +1,6 @@
 (function(){
+  window.__AETER_BUILD__="4.4.0-DEEP-SIGNAL";
+  console.info("AETER/NOVA // BOOTSTRAP 4.4 // DEEP SIGNAL");
   const $=s=>document.querySelector(s);
   function warn(text){const w=$('#boot-warning');if(!w)return;w.hidden=false;w.textContent=text;}
   function intent(sound){

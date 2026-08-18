@@ -1,26 +1,19 @@
-# 0xAeterNova // Transmission Machine V4.3
+# 0xAeterNova — Transmission Machine V4.4 / DEEP SIGNAL
 
-An immersive spatial portfolio for Robotics, AI, embedded systems, reverse engineering and CTF work.
+A cinematic WebGL portfolio built around a reconfigurable machine, transmission-state transitions, spatial project environments, Signal Atlas navigation, Spectral Search, Engineering X-Ray, adaptive rendering, route-reactive UFO traffic, and the original approved soundtrack.
 
-V4.3 keeps the V4/V4.2 transmission art direction and soundtrack, then expands the world into a deeper futuristic environment with procedural UFO traffic, a redesigned Signal Atlas, spectral search, an instrument-style cursor, functional disassembly mode, and adaptive performance scaling.
+## Build identity
 
-Highlights:
+`BUILD-ID.txt` must report `VERSION: 4.4.0`.
 
-- persistent full-screen local WebGL2 machine
-- cinematic transmission/page transitions
-- project-specific spatial states
-- procedural UFO fleets and deeper futuristic horizon/background
-- local bloom/post-processing pipeline
-- adaptive resolution, bloom and particle load based on measured FPS
-- cached WebGL uniform locations to remove avoidable per-object driver overhead
-- unchanged V4.2 original soundtrack with audio-reactive geometry
-- interactive 3D Signal Atlas with focus-lock behavior
-- Spectral Search Array with live signal tuning
-- scanning instrument cursor with inertial trail
-- functional machine disassembly / reassembly mode
-- rebuilt About capability atlas with no percentage scores and no GitHub Activity Field
-- responsive collision-safe information lens
-- original GitHub profile artwork
-- project data maintained in one file
+## Important files
 
-See `START-HERE.md` first.
+- `index.html` — application shell
+- `css/app.css` — interface + responsive visual system
+- `js/app.js` — route/UI/search/atlas/cursor behavior
+- `js/engine.js` — local WebGL engine, environment, UFOs, rendering and performance logic
+- `js/data.js` — profile/projects/skills data
+- `assets/audio/` — approved soundtrack (unchanged from V4.2/V4.3)
+- `VERIFY-V4.4.ps1` — verifies the correct build was copied into a Git repository
+
+See `START-HERE.md` before publishing.

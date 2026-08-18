@@ -68,18 +68,18 @@ export const projects = [
 ];
 
 export const skills = [
-  { name: 'Robotics', family: 'Build', level: 0.92 },
-  { name: 'Artificial Intelligence', family: 'Think', level: 0.90 },
-  { name: 'Computer Vision', family: 'Think', level: 0.84 },
-  { name: 'Embedded Systems', family: 'Build', level: 0.86 },
-  { name: 'Reverse Engineering', family: 'Break', level: 0.82 },
-  { name: 'Binary Exploitation', family: 'Break', level: 0.74 },
-  { name: 'Linux', family: 'Systems', level: 0.90 },
-  { name: 'Python', family: 'Code', level: 0.92 },
-  { name: 'C / C++', family: 'Code', level: 0.86 },
-  { name: 'Rust', family: 'Code', level: 0.66 },
-  { name: 'Digital Forensics', family: 'Break', level: 0.72 },
-  { name: 'CTF', family: 'Break', level: 0.82 }
+  { name: 'Robotics', family: 'Build', signal: 'physical intelligence' },
+  { name: 'Embedded Systems', family: 'Build', signal: 'hardware + firmware' },
+  { name: 'Artificial Intelligence', family: 'Think', signal: 'learning systems' },
+  { name: 'Computer Vision', family: 'Think', signal: 'machine perception' },
+  { name: 'Reverse Engineering', family: 'Break', signal: 'binary understanding' },
+  { name: 'Binary Exploitation', family: 'Break', signal: 'memory + control flow' },
+  { name: 'Digital Forensics', family: 'Break', signal: 'evidence + artifacts' },
+  { name: 'Linux', family: 'Systems', signal: 'operating environments' },
+  { name: 'Python', family: 'Code', signal: 'rapid systems + AI' },
+  { name: 'C / C++', family: 'Code', signal: 'low-level control' },
+  { name: 'Rust', family: 'Code', signal: 'safe systems' },
+  { name: 'CTF', family: 'Practice', signal: 'pressure-tested curiosity' }
 ];
 
 export const achievements = [

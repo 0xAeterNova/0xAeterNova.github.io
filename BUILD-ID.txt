@@ -1,0 +1,5 @@
+AETERNOVA TRANSMISSION MACHINE
+VERSION: 4.4.0
+CODENAME: DEEP-SIGNAL
+BUILD: 2026-08-19-A
+If this file is not present in your GitHub repository root, V4.4 was not copied into the repository.
