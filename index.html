@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#070707" />
-  <meta name="description" content="0xAeterNova — immersive 3D portfolio for robotics, AI, cybersecurity and CTF work." />
-  <title>0xAeterNova // The Living Archive</title>
+  <meta name="theme-color" content="#0a0908" />
+  <meta name="description" content="0xAeterNova — The Impossible Machine. An immersive 3D portfolio for robotics, AI and cybersecurity." />
+  <title>0xAeterNova // The Impossible Machine</title>
   <link rel="icon" href="assets/ui/favicon.svg" />
   <link rel="stylesheet" href="css/app.css" />
   <script type="importmap">
@@ -17,110 +17,83 @@
   }
   </script>
 </head>
-<body class="realm-home">
+<body>
   <canvas id="webgl" aria-hidden="true"></canvas>
-  <div id="grain"></div>
-  <div id="vignette"></div>
-  <div id="scanlines"></div>
-  <div class="cursor-dot" id="cursor-dot"></div>
-  <div class="cursor-ring" id="cursor-ring"></div>
+  <div class="chromatic-veil" aria-hidden="true"></div>
+  <div class="film" aria-hidden="true"></div>
+  <div class="edge-shade" aria-hidden="true"></div>
 
-  <div id="intro">
-    <div class="intro-core">
-      <div class="intro-code" id="intro-code">Booting spatial archive // calibrating neural geometry</div>
-      <div class="intro-title">AETER<br>NOVA</div>
-      <div class="intro-progress"><i id="intro-bar"></i></div>
-      <div class="intro-meta"><span id="intro-step">Generating world 01</span><span id="intro-pct">00%</span></div>
+  <div id="boot" class="boot">
+    <div class="boot-symbol" aria-hidden="true"><i></i><i></i><i></i><b>0x</b></div>
+    <div class="boot-copy">
+      <span class="boot-kicker">AETER/NOVA SYSTEM 04</span>
+      <h1>THE IMPOSSIBLE<br>MACHINE</h1>
+      <p>A portfolio that reconfigures itself around the work.</p>
+      <div class="boot-actions">
+        <button id="enter-sound" class="enter primary" type="button">ENTER WITH SOUND</button>
+        <button id="enter-silent" class="enter" type="button">ENTER SILENT</button>
+      </div>
+      <small>Headphones recommended · sound can be changed anytime</small>
     </div>
-    <button id="skip-intro" type="button">Skip intro →</button>
   </div>
 
-  <div id="transition" aria-hidden="true"><div class="slice"></div><div class="slice"></div></div>
-
-  <div id="hud">
-    <header class="topbar">
-      <a class="brand magnetic" href="#/home" data-route="home" aria-label="Go home">
-        <span class="brand-mark"><span>0x</span></span>
-        <span class="brand-name">0xAeterNova<small>The Living Archive</small></span>
-      </a>
-      <div class="top-actions">
-        <button class="pill-btn magnetic" id="map-btn" type="button">World map · M</button>
-        <button class="pill-btn magnetic" id="command-btn" type="button">Command · /</button>
-        <button class="icon-btn magnetic" id="sound-btn" type="button" aria-label="Toggle generative audio">◌</button>
-        <button class="icon-btn magnetic" id="quality-btn" type="button" aria-label="Toggle rendering quality">Q</button>
-      </div>
-    </header>
-
-    <nav class="realm-rail" id="realm-rail" aria-label="Portfolio realms"></nav>
-
-    <div class="coords"><span class="pulse"></span><span id="coord-copy">REALM // 00.000 / 00.000</span></div>
-
-    <footer class="bottomline">
-      <div class="realm-id"><span class="num" id="realm-number">00</span><span class="copy">CURRENT REALM<strong id="realm-name">ORIGIN</strong><span id="realm-subtitle">LIVING SINGULARITY</span></span></div>
-      <div class="hint">DRAG TO ORBIT · WHEEL TO SHIFT DEPTH <kbd>M</kbd>MAP <kbd>/</kbd>COMMAND <kbd>F</kbd>FOCUS <kbd>R</kbd>RESET</div>
-    </footer>
+  <div id="transition" class="transition" aria-hidden="true">
+    <div class="transition-word" id="transition-word">RECONFIGURING</div>
+    <div class="blade b1"></div><div class="blade b2"></div><div class="blade b3"></div>
   </div>
 
-  <main id="content-layer" aria-live="polite">
-    <section class="view active" id="view-home" data-view="home">
-      <div class="hero-copy">
-        <div class="eyebrow">A spatial portfolio by Zaid Tawalbeh</div>
-        <h1 class="display">Build.<span class="gradient">Break. Evolve.</span></h1>
-        <p class="hero-lead">Robotics & AI meet reverse engineering, embedded systems and CTF work inside one living archive. Every realm is a different part of how I think, build and explore.</p>
-        <div class="hero-buttons">
-          <button class="cta primary magnetic" type="button" data-route="projects">Enter the archive <span>→</span></button>
-          <a class="cta magnetic" href="https://github.com/0xAeterNova" target="_blank" rel="noreferrer">GitHub ↗</a>
-        </div>
+  <header class="topbar" id="topbar">
+    <button class="brand magnetic" type="button" data-route="home" aria-label="Home">
+      <span class="brand-glyph">0x</span>
+      <span class="brand-copy"><b>AETER/NOVA</b><small>IMPOSSIBLE MACHINE // V4</small></span>
+    </button>
+    <div class="top-controls">
+      <button class="micro-btn magnetic" id="tour-btn" type="button">AUTO PILOT</button>
+      <button class="micro-btn magnetic" id="explode-btn" type="button">EXPLODE X</button>
+      <button class="micro-btn magnetic" id="map-btn" type="button">SYSTEM MAP</button>
+      <button class="micro-btn magnetic" id="command-btn" type="button">SEARCH /</button>
+      <div class="sound-cluster">
+        <button class="round-btn magnetic" id="sound-btn" type="button" aria-label="Toggle audio">♪</button>
+        <input id="volume" class="volume" type="range" min="0" max="100" value="48" aria-label="Audio volume" />
       </div>
-      <div class="hero-orbit-note"><b>THIS WORLD IS INTERACTIVE</b>Move the pointer to disturb the singularity. Drag to orbit. Scroll changes depth. Use the map or command palette to jump between realms.</div>
-    </section>
+    </div>
+  </header>
 
-    <section class="view" id="view-projects" data-view="projects">
-      <div class="section-panel">
-        <div class="panel-kicker">01 / PROJECT CONSTELLATION</div>
-        <h2 class="panel-title">The Archive</h2>
-        <p class="panel-copy">Projects are not cards here. Each one is a spatial artifact with its own material language and destination. Select a signal to pull its world into focus.</p>
-        <div class="panel-mini"><div class="mini-stat"><small>Featured artifacts</small><b>03 active worlds</b></div><div class="mini-stat"><small>Interaction</small><b>Click a signal / use keys</b></div></div>
-      </div>
-      <div class="project-orbit-ui" id="project-orbit-ui"></div>
-    </section>
+  <nav class="phase-dial" id="phase-dial" aria-label="Portfolio sections"></nav>
 
-    <section class="view" id="view-project" data-view="project"><article class="project-detail" id="project-detail"></article></section>
+  <aside id="lens" class="lens lens-left" aria-live="polite">
+    <div class="lens-index"><span id="lens-num">00</span><i></i><span id="lens-code">ORIGIN</span></div>
+    <div id="lens-content" class="lens-content"></div>
+    <div class="lens-foot">
+      <span id="lens-hint">DRAG SPACE · SCROLL DEPTH · CLICK ENERGY</span>
+      <span id="lens-status">SYSTEM STABLE</span>
+    </div>
+  </aside>
 
-    <section class="view" id="view-cyber" data-view="cyber">
-      <div class="section-panel">
-        <div class="panel-kicker">02 / BREACH REALM</div>
-        <h2 class="panel-title">Break it.<br>Understand it.</h2>
-        <p class="panel-copy">Reverse engineering and binary exploitation turn software into a puzzle of instructions, memory and assumptions. CTF work is where that curiosity becomes measurable practice.</p>
-        <div class="panel-mini"><div class="mini-stat"><small>Team</small><b>GeomRavage</b></div><div class="mini-stat"><small>Primary focus</small><b>REV / PWN</b></div></div>
-      </div>
-      <div class="cyber-console"><pre><span class="prompt">root@0xaeternova:~#</span> whoami
-robotics_ai + reverse_engineering + pwn
+  <div class="telemetry" id="telemetry" aria-hidden="true">
+    <span>PHASE</span><b id="telemetry-phase">0.000</b><span>FIELD</span><b id="telemetry-field">AETER</b>
+  </div>
 
-<span class="prompt">root@0xaeternova:~#</span> current_focus
-COAE / CPTS · Hack The Box · CTF tournaments
+  <div class="cursor" id="cursor"><i></i><b></b></div>
 
-<span class="prompt">root@0xaeternova:~#</span> status
-learning by taking systems apart █</pre><div class="cyber-links"><a class="cta" target="_blank" rel="noreferrer" href="https://ctftime.org/user/245368">CTFtime ↗</a><a class="cta" target="_blank" rel="noreferrer" href="https://ctftime.org/team/412925">GeomRavage ↗</a><a class="cta" target="_blank" rel="noreferrer" href="https://github.com/0xAeterNova/upctf-writeups/blob/main/REV/Locked%20Temple/Write-Up.md">Winning writeup ↗</a></div></div>
-    </section>
+  <div id="map" class="overlay" role="dialog" aria-modal="true" aria-label="System map">
+    <div class="map-shell">
+      <div class="overlay-head"><span>SYSTEM TOPOLOGY</span><button class="close-btn" type="button" data-close>×</button></div>
+      <div class="map-core" id="map-core"></div>
+      <div class="map-note">Each node is one physical state of the same machine.</div>
+    </div>
+  </div>
 
-    <section class="view" id="view-about" data-view="about">
-      <div class="about-grid">
-        <div class="about-card"><img class="about-hero" src="assets/profile/profile-hero-dark.svg" alt="0xAeterNova original GitHub hero artwork" /></div>
-        <div class="about-copy"><div class="eyebrow">03 / ORBITAL OBSERVATORY</div><h2>Between machines<br>and imagination.</h2><p>I am a multidisciplinary Robotics & Artificial Intelligence student interested in systems that perceive, reason and interact with the real world. My work also crosses into cybersecurity, where reverse engineering and CTF practice sharpen how I understand software at a lower level. I am especially drawn to the overlap between robotics, AI, medicine, security, simulation and space exploration.</p><div class="skill-cloud" id="skill-cloud"></div></div>
-      </div>
-    </section>
+  <div id="command" class="overlay" role="dialog" aria-modal="true" aria-label="Search portfolio">
+    <div class="command-shell">
+      <div class="overlay-head"><span>FIND ANYTHING</span><button class="close-btn" type="button" data-close>×</button></div>
+      <input id="command-input" class="command-input" autocomplete="off" placeholder="Project, skill, realm…" />
+      <div id="command-results" class="command-results"></div>
+    </div>
+  </div>
 
-    <section class="view" id="view-contact" data-view="contact">
-      <div class="contact-panel"><div class="eyebrow" style="justify-content:center">04 / AURORA UPLINK</div><h2>Transmit<br>a signal.</h2><p>Projects, competitions, robotics, AI, low-level security, research, or something strange enough to be interesting — open a channel.</p><div class="contact-links" id="contact-links"></div></div>
-    </section>
-  </main>
-
-  <div id="map" role="dialog" aria-modal="true" aria-label="World map"><div class="map-board" id="map-board"><div class="map-title">AETERNOVA // REALM TOPOLOGY</div></div></div>
-
-  <div id="command" role="dialog" aria-modal="true" aria-label="Command palette"><div class="command-box"><input class="command-input" id="command-input" placeholder="Type a destination, project or skill…" autocomplete="off" /><div class="command-results" id="command-results"></div></div></div>
-
-  <div class="toast" id="toast"></div>
+  <div id="toast" class="toast"></div>
+  <div class="mobile-tip">SWIPE SPACE · TAP NODES · USE MENU</div>
 
   <script type="module" src="js/app.js"></script>
 </body>

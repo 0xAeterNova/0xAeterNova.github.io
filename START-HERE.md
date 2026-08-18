@@ -1,50 +1,19 @@
-# 0xAeterNova — The Living Archive
+# Start here
 
-This build is a complete restart. It is a single persistent 3D universe, not a normal multi-page template.
+1. Extract the folder.
+2. Double-click `start-local.bat` on Windows, or run `./start-local.sh` on Linux/macOS.
+3. Open `http://localhost:8080` if it does not open automatically.
+4. Choose **ENTER WITH SOUND** for the intended experience. Browser audio requires a user interaction, which is why the site starts with an entry gate.
+5. Use the mouse in empty 3D space to orbit. Use the wheel to move the camera depth.
+6. Press `X` to explode/recompose the active machine.
+7. Open projects from the Archive, map, 3D objects, or search palette.
 
-## Run it locally
+## Editing your information
 
-### Windows
-Double-click `start-local.bat`, then open:
+Almost all portfolio content is in `js/data.js`.
 
-`http://localhost:8080`
+Do not edit `index.html` every time you add a project. Add the project to the `projects` array instead.
 
-### Linux / macOS
-Run:
+## Visual philosophy
 
-```bash
-chmod +x start-local.sh
-./start-local.sh
-```
-
-Then open `http://localhost:8080`.
-
-> The portfolio intentionally loads Three.js r185 from jsDelivr. You need an internet connection while previewing it locally.
-
-## Controls
-
-- Mouse / pointer: reactive scene movement
-- Drag empty 3D space: orbit the active realm
-- Mouse wheel: change camera depth
-- `M`: open the realm map
-- `/`: open the command palette
-- `1`–`5`: jump directly between main realms
-- `Q`: toggle High / Low rendering mode
-- Sound icon: enable optional procedural WebAudio ambience
-- Click a 3D project monolith: enter its project realm
-
-## The only file you normally edit
-
-`js/data.js`
-
-That file contains:
-
-- your name and links
-- featured projects
-- project technologies
-- project descriptions
-- skills
-- achievements
-- realm metadata
-
-See `ADDING-PROJECTS.md` for the exact project workflow.
+The site has one persistent mechanical identity. Every section changes the geometry, palette, fog/exposure, sound and motion while keeping the same machine spine. This is what makes the experience coherent without forcing every section into one dark-blue theme.
