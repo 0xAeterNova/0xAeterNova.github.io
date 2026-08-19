@@ -1,19 +1,11 @@
-# 0xAeterNova — Transmission Machine V4.5 / NEON EXODUS
+# 0xAeterNova — Transmission Machine V5.0
 
-A cinematic WebGL portfolio built around a reconfigurable machine, transmission-state transitions, spatial project environments, Signal Atlas navigation, Spectral Search, Engineering X-Ray, adaptive rendering, route-reactive UFO traffic, and the original approved soundtrack.
+**Codename: NIGHT CIRCUIT**
 
-## Build identity
+A self-contained WebGL2 cyberpunk portfolio for robotics, AI, embedded systems and low-level security.
 
-`BUILD-ID.txt` must report `VERSION: 4.5.0`.
+V5.0 keeps the Transmission Machine identity and soundtrack while rebuilding the visual system around a deeper 3D night city: physical towers, transit lines, UFO traffic, sentinels, route-specific architecture, cinematic transitions, Neon Atlas, Spectral Search, hover microinteractions and adaptive rendering.
 
-## Important files
+Project/profile content is primarily stored in `js/data.js`.
 
-- `index.html` — application shell
-- `css/app.css` — interface + responsive visual system
-- `js/app.js` — route/UI/search/atlas/cursor behavior
-- `js/engine.js` — local WebGL engine, environment, UFOs, rendering and performance logic
-- `js/data.js` — profile/projects/skills data
-- `assets/audio/` — approved soundtrack (unchanged from V4.2/V4.3)
-- `VERIFY-V4.5.ps1` — verifies the correct build was copied into a Git repository
-
-See `START-HERE.md` before publishing.
+See `START-HERE.md`, `ADDING-PROJECTS.md` and `PUBLISHING.md`.

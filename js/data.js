@@ -38,7 +38,7 @@ export const projects = [
     name: 'PHANTOM',
     label: '02 / HUMAN SIGNAL AI',
     tagline: 'A multimodal behavioral analysis engine.',
-    summary: 'A deep-learning module for age estimation, male-or-female presentation, facial emotion recognition and emotion analysis from voice tone.',
+    summary: 'A deep-learning module for age estimation, presentation analysis, facial emotion recognition and emotion analysis from voice tone.',
     long: 'PHANTOM combines visual and audio signals into one experimental behavioral-analysis pipeline. The project studies facial emotion, age estimation and voice emotion while presenting the outputs as a unified perception system rather than isolated models.',
     year: '2026',
     status: 'Under development',
@@ -79,10 +79,10 @@ export const skills = [
   { name: 'Python', family: 'Code', signal: 'rapid systems + AI' },
   { name: 'C / C++', family: 'Code', signal: 'low-level control' },
   { name: 'Rust', family: 'Code', signal: 'safe systems' },
-  { name: 'CTF', family: 'Practice', signal: 'pressure-tested curiosity' },
+  { name: 'JavaScript / WebGL', family: 'Code', signal: 'realtime interfaces' },
   { name: 'Wi-Fi CSI', family: 'Sensors', signal: 'signal perception' },
-  { name: 'Forensics', family: 'Practice', signal: 'evidence recovery' },
-  { name: 'WebGL', family: 'Code', signal: 'realtime interfaces' }
+  { name: 'CTF', family: 'Practice', signal: 'pressure-tested curiosity' },
+  { name: 'Forensics', family: 'Practice', signal: 'evidence recovery' }
 ];
 
 export const achievements = [
@@ -99,22 +99,26 @@ export const achievements = [
 ];
 
 export const realms = [
-  { id: 'home', name: 'Origin', subtitle: 'Cybernetic Singularity', number: '00', palette: ['#ff8552', '#ff2ea6', '#4df1ff'], icon: '✦' },
-  { id: 'projects', name: 'Archive', subtitle: 'Project Constellation', number: '01', palette: ['#fff4cb', '#ff2ea6', '#19e6ff'], icon: '◈' },
-  { id: 'cyber', name: 'Breach', subtitle: 'CTF / Security', number: '02', palette: ['#faff00', '#ff5a1f', '#0a0a08'], icon: '⌁' },
-  { id: 'about', name: 'Orbit', subtitle: 'Identity / Skills', number: '03', palette: ['#ffd87a', '#7d52ff', '#26e6b4'], icon: '◎' },
-  { id: 'contact', name: 'Uplink', subtitle: 'Contact', number: '04', palette: ['#88ffd5', '#ff9b78', '#6755ff'], icon: '⌁' },
-  { id: 'lab', name: 'Forge', subtitle: 'Prototype District', number: '05', palette: ['#34f0ff', '#b5ff5b', '#ffe78a'], icon: '⬡' },
-  { id: 'timeline', name: 'Trajectory', subtitle: 'Signal Timeline', number: '06', palette: ['#ff8bc2', '#6cf2ff', '#f8f4db'], icon: '⇶' }
+  { id: 'home', name: 'Origin', subtitle: 'Neon Core', number: '00', palette: ['#ff6a45', '#ff2ba6', '#45f1ff'], icon: '✦' },
+  { id: 'projects', name: 'Archive', subtitle: 'Project District', number: '01', palette: ['#fff1c6', '#ff2ea6', '#19e6ff'], icon: '◈' },
+  { id: 'cyber', name: 'Breach', subtitle: 'Security Sector', number: '02', palette: ['#eaff39', '#ff5a1f', '#0b0a08'], icon: '⌁' },
+  { id: 'lab', name: 'Forge', subtitle: 'Prototype Hangar', number: '03', palette: ['#36ecff', '#a6ff52', '#ffe08a'], icon: '⬡' },
+  { id: 'arsenal', name: 'Arsenal', subtitle: 'Systems Stack', number: '04', palette: ['#5cf6ff', '#d7ff55', '#bb7cff'], icon: '▦' },
+  { id: 'missions', name: 'Missions', subtitle: 'Achievements', number: '05', palette: ['#ffcf5c', '#ff5c8f', '#8f75ff'], icon: '◆' },
+  { id: 'timeline', name: 'Trajectory', subtitle: 'Signal Timeline', number: '06', palette: ['#ff8bc2', '#6cf2ff', '#f8f4db'], icon: '⇶' },
+  { id: 'about', name: 'Orbit', subtitle: 'Identity / Skills', number: '07', palette: ['#ffd87a', '#7d52ff', '#26e6b4'], icon: '◎' },
+  { id: 'contact', name: 'Uplink', subtitle: 'Contact', number: '08', palette: ['#88ffd5', '#ff9b78', '#6755ff'], icon: '⌁' }
 ];
 
 export const commandEntries = [
-  { label: 'Go to Origin', route: 'home', keywords: 'home origin intro neon cyberpunk build break evolve' },
-  { label: 'Open Project Archive', route: 'projects', keywords: 'projects work archive portfolio' },
-  ...projects.map(p => ({ label: `Project · ${p.name}`, route: `project/${p.slug}`, keywords: `${p.name} ${p.tagline} ${p.stack.join(' ')}` })),
-  { label: 'Open Cyber Realm', route: 'cyber', keywords: 'ctf cybersecurity reverse engineering pwn forensics' },
-  { label: 'Open About Orbit', route: 'about', keywords: 'about skills profile identity robotics artificial intelligence' },
-  { label: 'Open Contact Uplink', route: 'contact', keywords: 'contact github linkedin ctftime social' },
-  { label: 'Open Forge District', route: 'lab', keywords: 'lab forge prototypes experiments interactive realtime webgl embedded systems' },
-  { label: 'Open Trajectory Timeline', route: 'timeline', keywords: 'timeline journey milestones learning roadmap history trajectory' }
+  { label: 'Go to Origin', route: 'home', type: 'Realm', keywords: 'home origin intro neon cyberpunk city build break evolve' },
+  { label: 'Open Project Archive', route: 'projects', type: 'Realm', keywords: 'projects archive work portfolio' },
+  ...projects.map(p => ({ label: `Project · ${p.name}`, route: `project/${p.slug}`, type: 'Project', keywords: `${p.name} ${p.tagline} ${p.stack.join(' ')}` })),
+  { label: 'Open Breach Sector', route: 'cyber', type: 'Realm', keywords: 'ctf cybersecurity reverse engineering pwn forensics' },
+  { label: 'Open Forge Hangar', route: 'lab', type: 'Realm', keywords: 'lab forge prototype experiments interactive embedded webgl realtime' },
+  { label: 'Open Systems Arsenal', route: 'arsenal', type: 'Realm', keywords: 'arsenal technologies skills languages stack tools systems code' },
+  { label: 'Open Mission Deck', route: 'missions', type: 'Realm', keywords: 'achievements competition mission awards writeup team ctftime' },
+  { label: 'Open Trajectory', route: 'timeline', type: 'Realm', keywords: 'timeline journey milestones learning roadmap history trajectory' },
+  { label: 'Open Identity Orbit', route: 'about', type: 'Realm', keywords: 'about skills profile identity robotics ai security' },
+  { label: 'Open Uplink', route: 'contact', type: 'Realm', keywords: 'contact links github linkedin ctftime social' }
 ];

@@ -1,48 +1,29 @@
-# AeterNova Transmission Machine V4.5 — NEON EXODUS
+# 0xAeterNova // Transmission Machine V5.0 — NIGHT CIRCUIT
 
-This version keeps the V4 transmission-machine art direction and the soundtrack you approved, while substantially changing the background, UFO system, cursor, Engineering X-Ray, Signal Atlas, Spectral Search, About, and performance engine.
+V5.0 is a full cinematic cyberpunk rebuild of the Transmission Machine direction.
 
-## 1. Test locally
+## Start locally
 
-On Windows, double-click `START-PORTFOLIO.bat` and use the browser page it opens.
+Windows: double-click `START-PORTFOLIO.bat`.
 
-You should see a small build marker reading **BUILD 4.5 · NEON EXODUS**. If you do not see that marker, you are not running V4.5.
+Linux/macOS: run `./start-local.sh`.
 
-## 2. Controls
+Then open `http://127.0.0.1:8080/?v=5.0.0`.
 
-- Drag: orbit camera
+## Controls
+
+- Drag empty 3D space: orbit camera
 - Mouse wheel: camera depth
-- `X`: Engineering X-Ray / reassemble
-- `M`: Signal Atlas
+- Click 3D project signals: open them
 - `/`: Spectral Search
+- `M`: Neon Atlas
+- `X`: X-Ray Machine / reassemble
+- `F`: Cinema mode
 - `R`: reset camera
-- Autopilot button: cinematic guided sequence
+- `1`–`9`: jump through portfolio districts
 
-## 3. What Engineering X-Ray does
+## Districts
 
-It is an inspection mode, not an explosion. The active machine separates into architectural layers, the camera pulls back, and the pieces gain controlled rotational drift. Press X again to reassemble.
+Origin, Archive, Breach, Forge, Arsenal, Missions, Trajectory, Orbit and Uplink.
 
-
-## Fastest install into your current repository
-
-From the extracted V4.5 folder, you can run `./INSTALL-V4.5.ps1`. It defaults to `C:\Users\Xpl0iS4n\Desktop\0xAeterNova.github.io`, preserves `.git`, copies the runtime files, removes the old About heatmap folder, and immediately prints `git status --short`.
-
-## 4. Copy V4.5 to GitHub Pages correctly
-
-Your repository root must directly contain `index.html`, `BUILD-ID.txt`, `css`, `js`, and `assets`.
-
-After copying the **contents** of this V4.5 folder into your repository, open PowerShell in the repository root and run:
-
-`./VERIFY-V4.5.ps1`
-
-It must report `VERSION: 4.5.0` and `Required V4.5 runtime files: OK`.
-
-Then run `git status --short`. Before your first V4.5 commit, Git should show modified runtime files and the new `BUILD-ID.txt` / verifier unless you have already committed the build.
-
-## 5. If Git says `nothing to commit`
-
-First run `Get-Content .\BUILD-ID.txt`. If it does not say `VERSION: 4.5.0`, you copied the build somewhere other than the repository root. If it does say 4.5.0, run `git log -1 --oneline`; V4.5 may already be committed.
-
-## 6. Browser cache
-
-V4.5 cache-busts the main CSS/JS automatically. After GitHub Pages deploys, still use `Ctrl+Shift+R` once or open a private window if you had the old site open for a long time.
+The soundtrack from the previous version is intentionally preserved.

@@ -1,16 +1,24 @@
-# Publish V4.5 to GitHub Pages
+# Publish V5.0 to GitHub Pages
 
-Use the repository `0xAeterNova.github.io`.
+Copy the **contents** of this folder into the root of your `0xAeterNova.github.io` repository.
 
-1. Extract the V4.5 ZIP.
-2. Copy the **contents** of the extracted folder into the root of your local `0xAeterNova.github.io` repository. Do not copy the outer folder itself.
-3. In PowerShell, from the repository root, run `./VERIFY-V4.5.ps1`.
-4. Confirm `Get-Content .\BUILD-ID.txt` includes `VERSION: 4.5.0`.
-5. Run `git status --short`. It must show changes unless V4.5 is already committed.
-6. Run `git add -A`.
-7. Run `git commit -m "Transmission Machine v4.5 Deep Signal"`.
-8. Run `git push origin main`.
-9. In GitHub: Settings → Pages → Deploy from a branch → main → /(root).
-10. After deployment, hard refresh once (`Ctrl+Shift+R`). The site itself should show `BUILD 4.5 · NEON EXODUS`.
+Before committing, verify:
 
-If `git status --short` is empty but `BUILD-ID.txt` is missing or says an older version, the new files are not in your repository root.
+```powershell
+Get-Content .\BUILD-ID.txt
+git status --short
+```
+
+`BUILD-ID.txt` must show `VERSION: 5.0.0` and `CODENAME: NIGHT-CIRCUIT`.
+
+Then:
+
+```powershell
+git add -A
+git commit -m "Transmission Machine v5.0 Night Circuit"
+git push origin main
+```
+
+GitHub: **Settings → Pages → Deploy from a branch → main → /(root)**.
+
+After deployment, hard refresh (`Ctrl+Shift+R`). The bottom build badge must read `BUILD 5.0 · NIGHT CIRCUIT`.

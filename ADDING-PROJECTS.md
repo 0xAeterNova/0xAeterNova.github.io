@@ -1,17 +1,14 @@
-# Adding a project
+# Adding Projects in V5.0
 
-Open `js/data.js` and add another object inside `projects`.
+Edit `js/data.js` and add a new object to the `projects` array. Give it a unique `slug`, name, descriptions, stack, repository, poster path, accent and realm.
 
-Use a unique `slug`, for example `aeterbot`, and put its artwork in `assets/projects/`.
+Place the project artwork in `assets/projects/`.
 
-The interface automatically adds the project to:
+The project is then included automatically in:
+- Project Archive
+- Neon Atlas
+- Spectral Search
+- Project detail view
+- Autopilot/search routing
 
-- Archive
-- search
-- project detail view
-- 3D Archive constellation
-- 3D Signal Map
-
-Projects with `realm: 'ruvigil'`, `realm: 'phantom'`, or `realm: 'elif'` use the three custom flagship worlds. Any other realm receives a generic spatial artifact automatically.
-
-For a new flagship project with its own unique 3D world, add a new builder in `js/engine.js` and route it from `buildProject()`.
+Flagship projects can receive a custom 3D scene in `js/engine.js` by adding a realm-specific builder.
