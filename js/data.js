@@ -79,7 +79,10 @@ export const skills = [
   { name: 'Python', family: 'Code', signal: 'rapid systems + AI' },
   { name: 'C / C++', family: 'Code', signal: 'low-level control' },
   { name: 'Rust', family: 'Code', signal: 'safe systems' },
-  { name: 'CTF', family: 'Practice', signal: 'pressure-tested curiosity' }
+  { name: 'CTF', family: 'Practice', signal: 'pressure-tested curiosity' },
+  { name: 'Wi-Fi CSI', family: 'Sensors', signal: 'signal perception' },
+  { name: 'Forensics', family: 'Practice', signal: 'evidence recovery' },
+  { name: 'WebGL', family: 'Code', signal: 'realtime interfaces' }
 ];
 
 export const achievements = [
@@ -96,18 +99,22 @@ export const achievements = [
 ];
 
 export const realms = [
-  { id: 'home', name: 'Origin', subtitle: 'Living Singularity', number: '00', palette: ['#f7f0d8', '#ff6a3d', '#5b2cff'], icon: '✦' },
+  { id: 'home', name: 'Origin', subtitle: 'Cybernetic Singularity', number: '00', palette: ['#ff8552', '#ff2ea6', '#4df1ff'], icon: '✦' },
   { id: 'projects', name: 'Archive', subtitle: 'Project Constellation', number: '01', palette: ['#fff4cb', '#ff2ea6', '#19e6ff'], icon: '◈' },
   { id: 'cyber', name: 'Breach', subtitle: 'CTF / Security', number: '02', palette: ['#faff00', '#ff5a1f', '#0a0a08'], icon: '⌁' },
-  { id: 'about', name: 'Orbit', subtitle: 'About / Skills', number: '03', palette: ['#ffd87a', '#7d52ff', '#26e6b4'], icon: '◎' },
-  { id: 'contact', name: 'Uplink', subtitle: 'Contact', number: '04', palette: ['#88ffd5', '#ff9b78', '#6755ff'], icon: '⌁' }
+  { id: 'about', name: 'Orbit', subtitle: 'Identity / Skills', number: '03', palette: ['#ffd87a', '#7d52ff', '#26e6b4'], icon: '◎' },
+  { id: 'contact', name: 'Uplink', subtitle: 'Contact', number: '04', palette: ['#88ffd5', '#ff9b78', '#6755ff'], icon: '⌁' },
+  { id: 'lab', name: 'Forge', subtitle: 'Prototype District', number: '05', palette: ['#34f0ff', '#b5ff5b', '#ffe78a'], icon: '⬡' },
+  { id: 'timeline', name: 'Trajectory', subtitle: 'Signal Timeline', number: '06', palette: ['#ff8bc2', '#6cf2ff', '#f8f4db'], icon: '⇶' }
 ];
 
 export const commandEntries = [
-  { label: 'Go to Origin', route: 'home', keywords: 'home origin intro' },
-  { label: 'Open Project Archive', route: 'projects', keywords: 'projects work archive' },
-  ...projects.map(p => ({ label: `Project · ${p.name}`, route: `project/${p.slug}`, keywords: `${p.name} ${p.stack.join(' ')}` })),
-  { label: 'Open Cyber Realm', route: 'cyber', keywords: 'ctf cybersecurity reverse engineering pwn' },
-  { label: 'Open About Orbit', route: 'about', keywords: 'about skills profile education' },
-  { label: 'Open Contact Uplink', route: 'contact', keywords: 'contact links github linkedin' }
+  { label: 'Go to Origin', route: 'home', keywords: 'home origin intro neon cyberpunk build break evolve' },
+  { label: 'Open Project Archive', route: 'projects', keywords: 'projects work archive portfolio' },
+  ...projects.map(p => ({ label: `Project · ${p.name}`, route: `project/${p.slug}`, keywords: `${p.name} ${p.tagline} ${p.stack.join(' ')}` })),
+  { label: 'Open Cyber Realm', route: 'cyber', keywords: 'ctf cybersecurity reverse engineering pwn forensics' },
+  { label: 'Open About Orbit', route: 'about', keywords: 'about skills profile identity robotics artificial intelligence' },
+  { label: 'Open Contact Uplink', route: 'contact', keywords: 'contact github linkedin ctftime social' },
+  { label: 'Open Forge District', route: 'lab', keywords: 'lab forge prototypes experiments interactive realtime webgl embedded systems' },
+  { label: 'Open Trajectory Timeline', route: 'timeline', keywords: 'timeline journey milestones learning roadmap history trajectory' }
 ];

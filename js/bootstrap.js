@@ -1,6 +1,6 @@
 (function(){
-  window.__AETER_BUILD__="4.4.0-DEEP-SIGNAL";
-  console.info("AETER/NOVA // BOOTSTRAP 4.4 // DEEP SIGNAL");
+  window.__AETER_BUILD__="4.5.0-NEON-EXODUS";
+  console.info("AETER/NOVA // BOOTSTRAP 4.5 // NEON EXODUS");
   const $=s=>document.querySelector(s);
   function warn(text){const w=$('#boot-warning');if(!w)return;w.hidden=false;w.textContent=text;}
   function intent(sound){
