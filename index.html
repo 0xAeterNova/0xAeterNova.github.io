@@ -1,153 +1,112 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#05070b" />
-  <meta name="description" content="0xAeterNova — Transmission Machine V5.0. Cinematic cyberpunk portfolio for robotics, AI, embedded systems and low-level security." />
-  <title>0xAeterNova // Transmission Machine V5</title>
-  <link rel="icon" href="assets/ui/favicon.svg" />
-  <link rel="stylesheet" href="css/app.css?v=5.0.0" />
-  <script defer src="js/bootstrap.js?v=5.0.0"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>0xAeterNova — Autonomous 3D Portfolio & Systems Nexus</title>
+  <meta name="description" content="Cinematic 3D Portfolio of 0xAeterNova: Robotics, AI, Low-Level Systems, Binary Exploitation, and Reverse Engineering.">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
-<body data-route="home">
-  <canvas id="webgl" aria-hidden="true"></canvas>
-  <div class="atmosphere" aria-hidden="true"></div>
-  <div class="rain" aria-hidden="true"></div>
-  <div class="film" aria-hidden="true"></div>
-  <div class="edge-shade" aria-hidden="true"></div>
-  <div class="scan-beam" aria-hidden="true"></div>
+<body>
+  <audio id="ambient-soundtrack" loop preload="auto">
+    <source src="assets/audio/soundtrack.mp3" type="audio/mpeg">
+  </audio>
 
-  <div id="boot" class="boot">
-    <div class="boot-viewport" aria-hidden="true">
-      <div class="boot-grid"></div>
-      <div class="boot-core">
-        <i class="bc-ring r1"></i><i class="bc-ring r2"></i><i class="bc-ring r3"></i>
-        <span class="bc-axis x"></span><span class="bc-axis y"></span>
-        <b>0x</b><em>NEON CORE</em>
+  <div id="webgl-container"></div>
+
+  <div id="cyber-reticle">
+    <div class="reticle-core"></div>
+    <div class="reticle-bracket top-left"></div>
+    <div class="reticle-bracket top-right"></div>
+    <div class="reticle-bracket bottom-left"></div>
+    <div class="reticle-bracket bottom-right"></div>
+  </div>
+
+  <div id="boot-overlay" class="active">
+    <div class="boot-terminal-card">
+      <div class="boot-header">
+        <span class="pulse-dot"></span>
+        <span>AETERNOVA CORE // BOOT SEQUENCE 5.0</span>
       </div>
-      <div class="boot-skyline">
-        <i style="--h:44%"></i><i style="--h:72%"></i><i style="--h:58%"></i><i style="--h:88%"></i><i style="--h:65%"></i><i style="--h:36%"></i><i style="--h:78%"></i><i style="--h:52%"></i><i style="--h:92%"></i><i style="--h:62%"></i><i style="--h:42%"></i><i style="--h:82%"></i>
+      <div class="boot-telemetry-log">
+        <p>> INITIALIZING GRAPHICS SUB-SYSTEMS [WebGL2]...</p>
+        <p>> DISMANTLING MONOLITHIC DOM BOUNDS...</p>
+        <p>> ATTACHING SPATIAL AUDIO CARRIER...</p>
+        <p>> 0xAeterNova SYSTEMS: CALIBRATED AND ARMED.</p>
       </div>
-      <div class="boot-flight"><span>UFO TRAFFIC</span><i></i><i></i><i></i></div>
-      <div class="boot-coordinates"><span>SECTOR 0X-AETER</span><b>31.9632°N // 35.9304°E</b><small>REALTIME CITY FEED</small></div>
-    </div>
-
-    <div class="boot-panel">
-      <div class="boot-kicker"><i></i><span>AETER/NOVA // NIGHT TRANSMISSION NETWORK</span><b>V5.0</b></div>
-      <h1>ENTER THE<br><span>NEON MACHINE.</span></h1>
-      <p>A cinematic cyberpunk portfolio where robotics, AI, embedded systems and low-level security become one living city of signals, machines and transmissions.</p>
-
-      <div class="boot-status-grid">
-        <div><small>RENDERER</small><b id="boot-renderer">LOCAL WEBGL2</b><i></i></div>
-        <div><small>SOUNDTRACK</small><b>TRANSMISSION MACHINE</b><i></i></div>
-        <div><small>SECTOR</small><b id="boot-status">INITIALIZING CITY</b><i></i></div>
+      <div class="boot-action-row">
+        <button id="boot-sound-btn" class="cyber-btn">ENTER WITH TRANSMISSION AUDIO</button>
+        <button id="boot-silent-btn" class="cyber-btn alt">ENTER SILENT</button>
       </div>
-
-      <div class="boot-actions">
-        <button id="enter-sound" class="enter primary magnetic" type="button"><span>ENTER WITH SOUND</span><em>RECOMMENDED</em></button>
-        <button id="enter-silent" class="enter magnetic" type="button"><span>ENTER SILENT</span><em>VISUAL ONLY</em></button>
-      </div>
-
-      <div class="boot-meta"><span>LOCAL ENGINE</span><span>ADAPTIVE GPU</span><span>3D CITY</span><span>SPATIAL ATLAS</span></div>
-      <div id="boot-warning" class="boot-warning" hidden></div>
-      <div class="boot-instruction">DRAG SPACE · SCROLL DEPTH · CLICK SIGNALS · M ATLAS · / SEARCH</div>
     </div>
   </div>
 
-  <div id="transition" class="transition" aria-hidden="true">
-    <div class="transition-grid"></div>
-    <div class="transition-horizon"></div>
-    <div class="transition-iris"><i></i><i></i><i></i></div>
-    <div class="transition-word"><small id="transition-kicker">TRANSMITTING</small><b id="transition-word">ORIGIN</b><em>SECTOR HANDOFF</em></div>
-    <div class="blade b1"></div><div class="blade b2"></div><div class="blade b3"></div><div class="blade b4"></div><div class="blade b5"></div>
-    <div class="tx-line l1"></div><div class="tx-line l2"></div><div class="tx-line l3"></div><div class="tx-line l4"></div>
-    <div class="transition-flare"></div>
-  </div>
-
-  <header class="topbar" id="topbar">
-    <button class="brand magnetic" type="button" data-route="home" aria-label="Home">
-      <span class="brand-glyph">0x</span>
-      <span class="brand-copy"><b>AETER/NOVA</b><small>TRANSMISSION CITY // V5.0 · NIGHT CIRCUIT</small></span>
-    </button>
-    <div class="top-controls">
-      <button class="micro-btn magnetic" id="tour-btn" type="button">AUTOPILOT</button>
-      <button class="micro-btn magnetic" id="explode-btn" type="button" title="Separate the active 3D machine into engineering layers">X-RAY</button>
-      <button class="micro-btn magnetic" id="map-btn" type="button">ATLAS</button>
-      <button class="micro-btn magnetic" id="command-btn" type="button">SEARCH /</button>
-      <button class="micro-btn magnetic" id="cinema-btn" type="button">CINEMA</button>
-      <div class="sound-cluster">
-        <button class="round-btn magnetic" id="sound-btn" type="button" aria-label="Toggle audio">♪</button>
-        <input id="volume" class="volume" type="range" min="0" max="100" value="68" aria-label="Audio volume" />
-      </div>
+  <header class="hud-top-bar">
+    <div class="hud-identity">
+      <span class="hud-callsign">0x // AETER/NOVA</span>
+      <span class="hud-status-indicator">SYSTEM ACTIVE</span>
+    </div>
+    <div class="hud-controls">
+      <span id="fps-metric" class="hud-metric">60 FPS</span>
+      <button id="audio-toggle" class="hud-btn">SOUND: ON</button>
+      <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.75" class="hud-slider" title="Volume">
+      <button id="xray-toggle" class="hud-btn">X-RAY MACHINE</button>
+      <button id="cinema-toggle" class="hud-btn">CINEMA [F]</button>
     </div>
   </header>
 
-  <nav class="phase-dial" id="phase-dial" aria-label="Portfolio sections"></nav>
+  <nav class="hud-district-nav">
+    <button class="nav-node active" data-district="00"><span class="node-id">00</span><span class="node-name">ORIGIN</span></button>
+    <button class="nav-node" data-district="01"><span class="node-id">01</span><span class="node-name">ARCHIVE</span></button>
+    <button class="nav-node" data-district="02"><span class="node-id">02</span><span class="node-name">BREACH</span></button>
+    <button class="nav-node" data-district="03"><span class="node-id">03</span><span class="node-name">FORGE</span></button>
+    <button class="nav-node" data-district="04"><span class="node-id">04</span><span class="node-name">ARSENAL</span></button>
+    <button class="nav-node" data-district="05"><span class="node-id">05</span><span class="node-name">MISSIONS</span></button>
+    <button class="nav-node" data-district="06"><span class="node-id">06</span><span class="node-name">TRAJECTORY</span></button>
+    <button class="nav-node" data-district="07"><span class="node-id">07</span><span class="node-name">ORBIT</span></button>
+    <button class="nav-node" data-district="08"><span class="node-id">08</span><span class="node-name">UPLINK</span></button>
+  </nav>
 
-  <aside id="lens" class="lens lens-left" aria-live="polite">
-    <div class="lens-index"><span id="lens-num">00</span><i></i><span id="lens-code">ORIGIN</span></div>
-    <div id="lens-content" class="lens-content"></div>
-    <div class="lens-foot"><span id="lens-hint">DRAG SPACE · SCROLL DEPTH · CLICK SIGNALS</span><span id="lens-status">LOCAL 3D INITIALIZING</span></div>
-  </aside>
+  <main id="district-overlay" class="hud-overlay-container"></main>
 
-  <div class="telemetry" id="telemetry" aria-hidden="true">
-    <span>PHASE</span><b id="telemetry-phase">0.000</b><span>FIELD</span><b id="telemetry-field">AETER</b><span>GPU</span><b id="telemetry-gpu">AUTO</b>
-  </div>
-
-  <div class="cursor" id="cursor" aria-hidden="true">
-    <i class="cursor-core"></i><b class="cursor-frame"></b><span class="cursor-arm h"></span><span class="cursor-arm v"></span><span class="cursor-beam"></span><em id="cursor-lock">SCAN</em>
-  </div>
-  <div id="cursor-trail" class="cursor-trail" aria-hidden="true"></div>
-  <div id="cursor-pulses" class="cursor-pulses" aria-hidden="true"></div>
-
-  <div class="world-ornaments" aria-hidden="true">
-    <i class="orbit-arc a1"></i><i class="orbit-arc a2"></i><i class="orbit-arc a3"></i>
-    <span class="horizon-code">AETER/NOVA // NIGHT CIRCUIT 5.0</span>
-    <b class="world-corner c1"></b><b class="world-corner c2"></b>
-    <span class="city-ticker">SECTOR LIGHTS ONLINE // TRAFFIC NORMAL // SIGNAL ENCRYPTION ACTIVE</span>
-  </div>
-
-  <section id="map" class="overlay map-overlay" aria-label="3D signal atlas" hidden>
-    <div class="atlas-hud">
-      <div class="atlas-eyebrow"><i></i><span>SPATIAL NAVIGATION NETWORK</span><b id="atlas-node-count">00 SIGNALS</b></div>
-      <h2>NEON<br><span>ATLAS</span></h2>
-      <p>Orbit the city lattice. Hover to isolate routes, project districts and transmission links. Click any node to jump directly into that sector.</p>
-      <div class="atlas-legend"><span><i class="dot core"></i>CORE</span><span><i class="dot project"></i>PROJECT</span><span><i class="dot craft"></i>TRAFFIC</span><span><i class="dot district"></i>DISTRICT</span></div>
-      <button class="map-close magnetic" type="button" data-close="map">CLOSE ATLAS ×</button>
+  <div id="spectral-search-modal" class="hud-modal">
+    <div class="modal-card">
+      <div class="search-input-wrap">
+        <span class="search-prompt">> SEARCH_SIGNAL:</span>
+        <input type="text" id="spectral-search-input" placeholder="Type project, exploit, tool, or protocol..." autocomplete="off">
+        <button class="modal-close" onclick="AeterHUD.closeAllModals()">ESC</button>
+      </div>
+      <div id="spectral-search-results" class="search-results-list"></div>
     </div>
-    <div class="atlas-focus"><small>TARGET LOCK</small><b id="map-focus-name">NO SIGNAL</b><span id="map-focus-meta">MOVE THROUGH THE CONSTELLATION</span><i class="focus-wave"></i><i class="focus-wave w2"></i></div>
-    <div class="atlas-route-stack" id="atlas-route-stack"></div>
-    <div class="map-reticle" aria-hidden="true"><i></i><i></i><b></b><span></span><em></em></div>
-    <div class="atlas-sweep" aria-hidden="true"></div>
-    <div id="map-labels" class="map-labels"></div>
-    <div class="map-coordinates"><span>ASTROMETRY</span><b id="map-readout">00.000 // 00.000</b><small>AETER/NOVA NAVCOM // M</small></div>
-  </section>
+  </div>
 
-  <section id="command" class="overlay search-overlay" aria-label="Spectral search" hidden>
-    <div class="search-console">
-      <div class="search-head"><div><small>SPECTRAL ACQUISITION ARRAY // /</small><b>Find a project, skill, system or district</b></div><button class="close-btn magnetic" type="button" data-close="search">×</button></div>
-      <div class="search-input-wrap"><span class="search-prompt">λ</span><input id="command-input" class="command-input" autocomplete="off" placeholder="Try: reverse, Rust, RuVigil, forensics, AI…" /><b class="search-caret"></b></div>
-      <div class="search-spectrum" aria-hidden="true">${''}</div>
-      <div id="command-results" class="command-results"></div>
-      <div class="search-foot"><span>↑ ↓ TUNE</span><span>ENTER LOCK</span><span>ESC RELEASE</span></div>
+  <div id="signal-atlas-modal" class="hud-modal">
+    <div class="modal-card wide">
+      <div class="modal-header">
+        <h3>SIGNAL ATLAS // 3D SPATIAL DISTRICT ROUTER</h3>
+        <button class="modal-close" onclick="AeterHUD.closeAllModals()">ESC</button>
+      </div>
+      <div id="atlas-node-grid" class="atlas-grid"></div>
     </div>
-    <div class="search-radar" aria-hidden="true"><i></i><i></i><i></i><b></b><span></span><em>ACQUIRING</em></div>
-    <div class="search-vector" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-    <div class="search-echo" id="search-echo" aria-hidden="true">AWAITING SIGNAL</div>
-  </section>
+  </div>
 
-  <div id="engine-error" class="engine-error" hidden></div>
-  <div id="disassembly-hud" class="disassembly-hud" hidden><small>ENGINEERING X-RAY // X</small><b>MACHINE OPEN</b><span>The active structure is separated into functional shells. Drag to inspect · X to close.</span><i></i></div>
-  <div id="toast" class="toast"></div>
-  <div class="mobile-tip">SWIPE SPACE · TAP SIGNALS · USE BOTTOM PHASE RAIL</div>
-  <div class="build-badge" title="If you see this, V5.0 is loaded">BUILD 5.0 · NIGHT CIRCUIT</div>
+  <footer class="hud-bottom-bar">
+    <div class="hud-hotkeys">
+      <span>[1-9] SECTORS</span>
+      <span>[/] SPECTRAL SEARCH</span>
+      <span>[M] SIGNAL ATLAS</span>
+      <span>[X] X-RAY DISASSEMBLY</span>
+      <span>[ESC] CLOSE</span>
+    </div>
+    <div class="hud-build-marker">
+      BUILD 5.0.0 · NIGHT CIRCUIT
+    </div>
+  </footer>
 
-  <audio id="soundtrack" preload="auto" loop crossorigin="anonymous">
-    <source src="assets/audio/transmission-machine.ogg" type="audio/ogg" />
-    <source src="assets/audio/transmission-machine.mp3" type="audio/mpeg" />
-  </audio>
-
-  <script type="module" src="js/app.js?v=5.0.0"></script>
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/bootstrap.js"></script>
 </body>
 </html>
