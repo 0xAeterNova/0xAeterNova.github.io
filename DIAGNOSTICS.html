@@ -1,42 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>0xAeterNova — Hardware & Shader Diagnostics</title>
-  <style>
-    body { background: #020308; color: #00f0ff; font-family: monospace; padding: 32px; line-height: 1.6; }
-    .diag-box { border: 1px solid #00f0ff44; padding: 18px; margin-bottom: 16px; background: #060c16; }
-    .ok { color: #00ff66; font-weight: bold; }
-    .warn { color: #ffaa00; }
-  </style>
-</head>
-<body>
-  <h2>[ 0xAeterNova HARDWARE & RUNTIME DIAGNOSTICS ]</h2>
-  <div id="results"></div>
-  <script>
-    const out = document.getElementById("results");
-    const check = (label, status, detail) => {
-      out.innerHTML += `<div class="diag-box"><div><strong>${label}</strong>: <span class="${status.toLowerCase()}">${status}</span></div><div>${detail}</div></div>`;
-    };
-
-    const canvas = document.createElement("canvas");
-    const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
-    if (gl) {
-      const dbg = gl.getExtension('WEBGL_debug_renderer_info');
-      const gpu = dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : "Generic GPU";
-      check("WebGL Context", "OK", `Renderer: ${gpu}`);
-    } else {
-      check("WebGL Context", "WARN", "WebGL is unavailable on this device.");
-    }
-
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (AudioCtx) {
-      check("WebAudio API", "OK", "Synthesizer & Spatial Nodes Supported.");
-    } else {
-      check("WebAudio API", "WARN", "Audio Context Unsupported.");
-    }
-
-    check("Viewport Telemetry", "OK", `Resolution: ${window.innerWidth}x${window.innerHeight}, DPR: ${window.devicePixelRatio}`);
-  </script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AeterNova Diagnostics</title><style>
+*{box-sizing:border-box}body{margin:0;background:#090807;color:#f5efe2;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;min-height:100vh;padding:32px}main{max-width:900px;margin:auto}h1{font:900 clamp(40px,7vw,84px)/.9 system-ui,sans-serif;letter-spacing:-.07em;margin:20px 0}.k{color:#ff744f;letter-spacing:.2em;font-size:11px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.card{padding:18px;border:1px solid #ffffff22;border-radius:18px;background:#ffffff08}.card small,.card b,.card span{display:block}.card small{color:#ffffff66;font-size:9px;letter-spacing:.12em}.card b{margin-top:8px;font-size:16px}.ok{color:#a9ffe6}.bad{color:#ff8e70}canvas{width:100%;height:240px;border:1px solid #ffffff22;border-radius:18px;margin-top:10px;background:#050506}.note{margin-top:20px;padding:16px;border:1px solid #ffffff22;border-radius:16px;color:#ffffff99;line-height:1.7;font-size:12px}a{color:#fff0ad}@media(max-width:650px){.grid{grid-template-columns:1fr}body{padding:18px}}
+</style></head><body><main><div class="k">AETER/NOVA // LOCAL ENGINE TEST</div><h1>3D Diagnostics</h1><div class="grid" id="grid"></div><canvas id="test"></canvas><div class="note" id="note"></div><p><a href="index.html">← Return to portfolio</a></p></main><script>
+const grid=document.getElementById('grid'),note=document.getElementById('note'),canvas=document.getElementById('test');
+function card(k,v,ok=true){grid.insertAdjacentHTML('beforeend',`<div class="card"><small>${k}</small><b class="${ok?'ok':'bad'}">${v}</b></div>`)}
+card('PROTOCOL',location.protocol,location.protocol!=='file:');card('USER AGENT',navigator.userAgent,true);card('DEVICE PIXEL RATIO',String(devicePixelRatio),true);
+let gl=null;try{gl=canvas.getContext('webgl2',{antialias:true});}catch(e){}
+card('WEBGL2',gl?'AVAILABLE':'UNAVAILABLE',!!gl);
+if(gl){const dbg=gl.getExtension('WEBGL_debug_renderer_info');const renderer=dbg?gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER);const vendor=dbg?gl.getParameter(dbg.UNMASKED_VENDOR_WEBGL):gl.getParameter(gl.VENDOR);card('GPU / RENDERER',renderer||'unknown',true);card('GPU VENDOR',vendor||'unknown',true);card('MAX TEXTURE SIZE',String(gl.getParameter(gl.MAX_TEXTURE_SIZE)),true);gl.viewport(0,0,canvas.width=900,canvas.height=240);gl.clearColor(.05,.03,.05,1);gl.clear(gl.COLOR_BUFFER_BIT);note.innerHTML='<b class="ok">WebGL2 is working.</b><br>The V5.0 portfolio is fully local and does not need Three.js or a CDN. If the main page still fails, send a screenshot of this diagnostics page plus the browser console.';}else{note.innerHTML='<b class="bad">WebGL2 is disabled or unavailable.</b><br>In Chrome/Edge, enable hardware acceleration in browser settings and restart the browser. Then try again.'}
+</script></body></html>
